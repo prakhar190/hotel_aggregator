@@ -1,0 +1,1 @@
+module.exports = { "url" : "mongodb://prakhar:indian@ds031661.mongolab.com:31661/hotel_aggregator" }

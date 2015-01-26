@@ -13,10 +13,11 @@
     "jade": "~1.8.2",
     "mongoose": "^3.8.21",
     "morgan": "~1.5.1",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "xmlbuilder": "^2.4.6"
   },
-  "engines" :{
-    "node" : "0.10.x",
-    "npm" : "2.1.x"
+  "engines": {
+    "node": "0.10.x",
+    "npm": "2.1.x"
   }
 }

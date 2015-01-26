@@ -1,7 +1,7 @@
 extends layout
 
 block content
-	form(action='' method='get')
+	form(action='/hotels/search' method='post')
 		.row
 			.col-md-3.col-md-offset-4
 				img(src='../images/1.png')
@@ -13,50 +13,51 @@ block content
 			.col-md-7.col.col-md-offset-3     
 				label Where
 				br
-				input(type='text', name='location',class='form-control')
+				input(type='text' name='location' required class='form-control')
 				br
 				br
-		.row 
-			.col-md-3.col-md-offset-3
-				label Check-in
-			.col-md-3
-				label Check-out
-		.row
-			.col-md-3.col-md-offset-3       
-				input(type='date',name='checkindate',class='form-group')
-			.col-md-3
-				input(type='date',name='checkoutdate',class='form-group')
-		.row
-			.col-md-3.col-md-offset-3
-				label Rooms
-				br
-				select(name='numberofrooms')
-					option(value='1') 1
-						option(value='2') 2
-						option(value='3') 3
-						option(value='4') 4
-						option(value='5') 5
-						option(value='6') 6
-			.col-md-2
-				label Adults &nbsp;
-				span 12+ yrs
-				br
-				select(name='numberofadults')
-					option(value='1') 1
-						option(value='2') 2
-						option(value='3') 3
-						option(value='4') 4
-			.col-md-2
-				label Child &nbsp;
-				span 0-11 yrs
-				br
-				select(name='numberofchild')
-					option(value='0') 0
+		.row.hidden
+			.row 
+				.col-md-3.col-md-offset-3
+					label Check-in
+				.col-md-3
+					label Check-out
+			.row
+				.col-md-3.col-md-offset-3       
+					input(type='text',name='checkindate',id='input_checkindate')
+				.col-md-3
+					input(type='text',name='checkoutdate',id='input_checkoutdate')
+			.row
+				.col-md-3.col-md-offset-3
+					label Rooms
+					br
+					select(name='numberofrooms' class='dropdown' class='form-control')
 						option(value='1') 1
-						option(value='2') 2
-						option(value='3') 3
+							option(value='2') 2
+							option(value='3') 3
+							option(value='4') 4
+							option(value='5') 5
+							option(value='6') 6
+				.col-md-2
+					label Adults &nbsp;
+					span 12+ yrs
+					br
+					select(name='numberofadults' class='form-control')
+						option(value='1') 1
+							option(value='2') 2
+							option(value='3') 3
+							option(value='4') 4
+				.col-md-2
+					label Child &nbsp;
+					span 0-11 yrs
+					br
+					select(name='numberofchild' class='form-control')
+						option(value='0') 0
+							option(value='1') 1
+							option(value='2') 2
+							option(value='3') 3
 		.row
 			.col.md-3.col-md-offset-9
 				br
-				input(type='submit' value='Search hotels' class='btn btn-success')
+				input(type='submit' value='Search hotels' class='btn btn-danger')
 					

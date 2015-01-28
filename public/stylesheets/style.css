@@ -6,3 +6,13 @@ body {
 a {
   color: #00B7FF;
 }
+
+.btn-search-hotel{
+	width: 100%;
+	background-color: #34A14A !important;
+	border-color: #34A14A !important;
+}
+.searchForm{
+	padding: 20px;
+	background-color: #F2F2F2;
+}

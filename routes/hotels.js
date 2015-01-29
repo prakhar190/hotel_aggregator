@@ -56,7 +56,7 @@ router.post('/search', function(req, res) {
 	        										.up()
 	        									.up()
 	        									.ele('StayDateRanges')
-	        										.ele('StayDateRange',{'start':'2015-01-28','end':"2015-01-29"}).up()
+	        										.ele('StayDateRange',{'start':'2015-02-14','end':"2015-02-16"}).up()
 	        									.up()
 	        								.up()
 	        							.up()  

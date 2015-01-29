@@ -16,6 +16,18 @@ a {
 	padding: 20px;
 	background-color: #F2F2F2;
 }
-pre{
-	text-align:left;
+.starcolor {
+color: rgb(245, 10, 37);
+font-size: 20px;
 }
+pre{
+	background-image: url("../images/preback.jpg");
+}
+.heading{
+	background-color: #FA0808;
+}
+
+
+
+
+

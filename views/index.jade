@@ -1,9 +1,10 @@
 extends layout
 
 block content
-	.row
-		.col-md-3.col-md-offset-4
-			img(src='../images/1.png')
+	.row.heading
+		.col-md-8.col-md-offset-1
+			div
+				img(src='../images/header.jpg')
 	.row.searchForm
 		.col-md-8.col-md-offset-2  
 			form(action='/hotels/search' method='post')
@@ -56,18 +57,25 @@ block content
 		.col-md-8.col-md-offset-2
 			if hotels
 				//pre= JSON.stringify(hotels)
-				each item,i in hotels.HotelSearchResults.Hotels 
-					pre 
-						img(src=hotels.HotelSearchResults.Hotels[0].PropertyInfo.MediaList[0].src)
-						-var hotelname=JSON.stringify(item.Name)
-						=hotelname.replace(/\"/g,"")
-						//=JSON.stringify(item.PropertyInfo.Facets[0].FacetValue.value)
-						-var l=star[i]
-						-for(var j=0;j<l;j++)
-							&#9733;
-						
-						
-						
+				each item,i in hotels.HotelSearchResults.Hotels
+					pre
+						.row
+							.col-md-4 
+								img(src=hotels.HotelSearchResults.Hotels[75].PropertyInfo.MediaList[0].src)
+							.col-md-8
+								
+								-var hotelname=JSON.stringify(item.Name)
+								B
+									=hotelname.replace(/\"/g,"")
+								//=JSON.stringify(item.PropertyInfo.Facets[0].FacetValue.value)
+								-var l=star[i]
+								.starcolor
+									&nbsp;
+									-for(var j=0;j<l;j++)
+										&#9733;
+							
+							
+							
 					//pre= JSON.stringify(hotels.HotelSearchResults.Hotels[0])
 					//pre= JSON.stringify(hotels.HotelSearchResults.Hotels[0].PropertyInfo.MediaList[0].src)
 					//img(src=hotels.HotelSearchResults.Hotels[0].PropertyInfo.MediaList[0].src)

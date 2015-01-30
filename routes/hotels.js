@@ -3,6 +3,7 @@ var router = express.Router();
 
 var http = require('http');
 var builder = require('xmlbuilder');
+var healthstatus= require('../ping/health');
 
 /* GET home page. */
 router.post('/search', function(req, res) {
@@ -20,11 +21,8 @@ router.post('/search', function(req, res) {
 	var search_response_body='';
   
   	// Set up the request
-	http.get("http://apim-gateway.mmtcloud.com/mmt-htlsearch/1.0/PingService/v1.0/pingSOA?responseFormat=json&echoMessage=healthStatus", function(healthRes) {
-	    healthRes.setEncoding('utf8');
-	    healthRes.on('data', function (chunk) {
-	    	var healthStatus = JSON.parse(chunk).ResponseCode.success;
-	        if(healthStatus){
+	healthstatus(function(health){
+	        if(health){
 	        	// continue search
 	        	var searchXML = builder.create('MMTHotelSearchRequest')
 	        							.ele('POS')
@@ -83,8 +81,7 @@ router.post('/search', function(req, res) {
 
 						res.render('index',{ title: 'Hotel Search', hotels: JSON.parse(search_response_body),star:star } )
 					});
-	        	}).on('error', function(e) {
-					  console.log('problem with request: ' + e.message);
+	        	
 					});
 
 	        	// post the data
@@ -95,9 +92,9 @@ router.post('/search', function(req, res) {
 	        	// redirect with error message
 	        	res.redirect('/');
 	        }
-	    });
-	}).on('error',function(e){
-		console.log("Something went wrong: " + e.message);
+	    	
+	    
+	
 	});
 });
 

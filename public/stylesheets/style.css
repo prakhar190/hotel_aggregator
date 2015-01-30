@@ -17,14 +17,26 @@ a {
 	background-color: #F2F2F2;
 }
 .starcolor {
-color: rgb(245, 10, 37);
-font-size: 20px;
+	display: inline;
+	color: rgb(245, 10, 37);
+	font-size: 20px;
 }
 pre{
-	background-image: url("../images/preback.jpg");
+	background-color: #FFEBCD;
 }
 .heading{
 	background-color: #FA0808;
+}
+.rate{
+	font-family: "Times New Roman", Georgia, Serif;
+	font-size: 25px;
+	color: #D2691E;
+
+}
+span{
+	font-size: 10px;
+	font-family: "Times New Roman", Georgia, Serif;
+	color: black;
 }
 
 

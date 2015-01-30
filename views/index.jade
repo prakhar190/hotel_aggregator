@@ -62,7 +62,7 @@ block content
 						.row
 							.col-md-4 
 								img(src=hotels.HotelSearchResults.Hotels[0].PropertyInfo.MediaList[0].src)
-							.col-md-8
+							.col-md-5
 								
 								-var hotelname=JSON.stringify(item.Name)
 								B
@@ -73,6 +73,13 @@ block content
 									&nbsp;
 									-for(var j=0;j<l;j++)
 										&#9733;
+								//=JSON.stringify(item.LowestRate.LowestRate.value)
+							.col-md-3.rate
+								-var lowestrate=JSON.stringify(item.LowestRate.LowestRate.value)
+								&#8377;
+								=lowestrate.replace(/\"/g,"")
+								&nbsp;
+								span per room/night
 							
 							
 							

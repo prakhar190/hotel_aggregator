@@ -23,6 +23,7 @@ router.post('/search', function(req, res) {
   	// Set up the request
 	healthstatus(function(health){
 	        if(health){
+	        	
 	        	// continue search
 	        	var searchXML = builder.create('MMTHotelSearchRequest')
 	        							.ele('POS')

@@ -62,7 +62,10 @@ block content
 					pre
 						.row
 							.col-md-4 
-								img(src=hotels.HotelSearchResults.Hotels[0].PropertyInfo.MediaList[0].src)
+								if item.PropertyInfo.MediaList
+									img(src=item.PropertyInfo.MediaList[0].src)
+								else
+									img(src='/images/no-image.png' alt='No Image')
 							.col-md-5
 								
 								-var hotelname=JSON.stringify(item.Name)

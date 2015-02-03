@@ -80,7 +80,7 @@ router.post('/search', function(req, res) {
 
 						//console.log(star);
 
-						res.render('index',{ title: 'Hotel Search', hotels: JSON.parse(search_response_body),star:star } )
+						res.render('index',{ title: 'Hotel Search', hotels: JSON.parse(search_response_body),star:star,user: req.user  } )
 					});
 	        	
 					});
@@ -98,5 +98,9 @@ router.post('/search', function(req, res) {
 	
 	});
 });
+router.get('/signout', function(req, res) {
+		req.logout();
+		res.redirect('/');
+	});
 
 module.exports = router;

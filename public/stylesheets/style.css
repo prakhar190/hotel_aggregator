@@ -5,6 +5,7 @@ body {
 
 a {
   color: #00B7FF;
+  font-size: 20px;
 }
 
 .btn-search-hotel{
@@ -37,6 +38,11 @@ span{
 	font-size: 10px;
 	font-family: "Times New Roman", Georgia, Serif;
 	color: black;
+}
+.welcome{
+	font-size: 20px;
+	font-family: "Times New Roman", Georgia, Serif;
+	color: rgba(0, 32, 255, 0.34);
 }
 
 

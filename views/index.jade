@@ -6,10 +6,10 @@ block content
 			.col-md-4.welcome
 				b Welcome &nbsp; #{user.firstname} #{user.lastname}
 			.col-md-8.text-right
-				a(href='signout', class='text-center new-account') Sign Out
+				a(href='/users/signout', class='text-center new-account') Sign Out
 		else
 			.col-md-2.col-md-offset-9
-			a(href='users/login') Login
+			a(href='/users/login') Login
 	
 	.row.heading
 		.col-md-8.col-md-offset-1

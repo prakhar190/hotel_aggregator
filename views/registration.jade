@@ -2,14 +2,15 @@ extends layout
 
 block content
 	.row
-		.col-md-8.col-md-offset-4
-			h1 Fill in your details
-	.row
 		.col-md-6.col-md-offset-3.searchForm
 			form(action='signup' method='post')
+				div.formheading Fill in your details
 				.form-group
-					label Email
+					label Email &nbsp;
+					if message
+						B.message #{message}
 					input(type='text' name='email' required class='form-control')
+
 					label Password
 					input(type='password' name='password' required class='form-control')
 					label Confirm Password
@@ -41,10 +42,9 @@ block content
 					label Mobile
 					input(type='text' name='mobile' required class='form-control')
 					br
-					input(type='submit' value='Save Details' class='btn btn-danger btn-search-hotel')
-		#message
-			if message
-				h1.text-center.error-message #{message}
+					input(type='submit' value='Create Account' class='btn btn-danger btn-search-hotel')
+	
+			
 
 
 

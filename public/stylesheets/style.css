@@ -1,5 +1,7 @@
 body {
-  padding: 50px;
+  padding-top: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -43,6 +45,55 @@ span{
 	font-size: 20px;
 	font-family: "Times New Roman", Georgia, Serif;
 	color: rgba(0, 32, 255, 0.34);
+}
+.message{
+	font-size: 20px;
+	font-family: "Times New Roman", Georgia, Serif;
+	color: red;
+}
+.formheading{
+	font-size: 20px;
+	font-family: "Times New Roman", Georgia, Serif;
+	color: rgb(0, 119, 255);
+	text-align: center;
+	background-color: rgba(250, 201, 8, 0);
+}
+.account-wall{
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.profile-img{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.form-signin input[type="password"]{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signin input[type="password"].nomargin{
+	margin-bottom: 0px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+h2.error-message{
+    color: red;
+}
+.login-title{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+
 }
 
 

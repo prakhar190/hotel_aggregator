@@ -1,9 +1,10 @@
 extends layout
 
 block content
+	div.container
 		div.row
 			div.col-sm-6.col-md-4.col-md-offset-4
-				h1.text-center.login-title Sign in to our Passport app
+				h1.text-center.login-title Sign in to our Hotel Aggregator
 					div.account-wall
 						img(class='profile-img', src='https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120')
 						form(class='form-signin', action='login', method='POST')
@@ -14,4 +15,4 @@ block content
 					a(href='/users/signup', class='text-center new-account') Create an account
 					#message
 					if message
-						h1.text-center.error-message #{message}
+						h2.text-center.error-message #{message}

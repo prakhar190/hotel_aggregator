@@ -22,7 +22,7 @@ module.exports = function(passport){
 
 	/* Handle Login POST */
 	router.post('/login', passport.authenticate('login', {
-		successRedirect: 'home',
+		successRedirect: '/',
 		failureRedirect: 'login',
 		failureFlash : true  
 	}));
@@ -40,7 +40,7 @@ module.exports = function(passport){
 	}));
 
 	/* GET Home Page */
-	router.get('/home', isAuthenticated, function(req, res){
+	/*router.get('/home', isAuthenticated, function(req, res){
 		res.render('index', { user: req.user });
 	});
 

@@ -3,13 +3,18 @@ extends layout
 block content
 	.row
 		if (user)
+			.col-md-2
+				img(src=user.image)
 			.col-md-4.welcome
 				b Welcome &nbsp; #{user.firstname} #{user.lastname}
-			.col-md-8.text-right
+			.col-md-6.text-right
 				a(href='/users/signout', class='text-center new-account') Sign Out
 		else
-			.col-md-2.col-md-offset-9
+			.col-md-4.col-md-offset-6
 			a(href='/users/login') Login
+			&nbsp; &nbsp;
+			a(href='/users/auth/facebook') 
+				img.size(src='../images/fblogin.png')
 	
 	.row.heading
 		.col-md-8.col-md-offset-1

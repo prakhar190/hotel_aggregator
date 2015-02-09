@@ -13,6 +13,8 @@
     "jade": "~1.8.2",
     "mongoose": "^3.8.21",
     "morgan": "~1.5.1",
+    "papercut": "0.0.6",
+    "passport-facebook": "^1.0.3",
     "serve-favicon": "~2.2.0",
     "xmlbuilder": "^2.4.6"
   },

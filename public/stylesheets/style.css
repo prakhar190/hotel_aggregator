@@ -1,13 +1,11 @@
 body {
-  padding-top: 20px;
-  padding-left: 100px;
-  padding-right: 100px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
   font-size: 20px;
+  text-decoration: none;
 }
 
 .btn-search-hotel{
@@ -15,42 +13,57 @@ a {
 	background-color: #34A14A !important;
 	border-color: #34A14A !important;
 }
+
 .searchForm{
-	padding: 20px;
+	
 	background-color: #F2F2F2;
+  padding-top: 20px;
+  padding-bottom:20px;
 }
+
 .starcolor {
 	display: inline;
+  text-align: left;
+  border-top: 0;
+  border-left: 0px;
 	color: rgb(245, 10, 37);
 	font-size: 20px;
 }
+
 pre{
 	background-color: #FFEBCD;
 }
+
 .heading{
 	background-color: #FA0808;
 }
+
 .rate{
 	font-family: "Times New Roman", Georgia, Serif;
 	font-size: 25px;
 	color: #D2691E;
-
+  margin-top:20px;
 }
+
 span{
 	font-size: 10px;
 	font-family: "Times New Roman", Georgia, Serif;
 	color: black;
 }
+
 .welcome{
-	font-size: 20px;
+  margin-top: 30px;
+	font-size: 15px;
 	font-family: "Times New Roman", Georgia, Serif;
-	color: rgba(0, 32, 255, 0.34);
+	color:rgba(21, 6, 231, 0.74);
 }
+
 .message{
 	font-size: 20px;
 	font-family: "Times New Roman", Georgia, Serif;
 	color: red;
 }
+
 .formheading{
 	font-size: 20px;
 	font-family: "Times New Roman", Georgia, Serif;
@@ -58,6 +71,7 @@ span{
 	text-align: center;
 	background-color: rgba(250, 201, 8, 0);
 }
+
 .account-wall{
     margin-top: 20px;
     padding: 40px 0px 20px 0px;
@@ -66,6 +80,7 @@ span{
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
+
 .profile-img{
     width: 96px;
     height: 96px;
@@ -75,29 +90,69 @@ span{
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
+
 .form-signin input[type="password"]{
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
 .form-signin input[type="password"].nomargin{
 	margin-bottom: 0px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
 h2.error-message{
     color: red;
 }
+
 .login-title{
     color: #555;
     font-size: 18px;
     font-weight: 400;
     display: block;
-
 }
-.size{
-  height: 20px;
-  width: 20px;
-  text-decoration: none;
 
+.size{
+  height: 30px;
+  width: 30px;
+  text-decoration: none;
+}
+
+.hotelimage{
+  width: 180px;
+  height: 210px;
+  margin-top: 0;
+}
+
+.hotelname{
+  font-size: 17px;
+  font-family: "Times New Roman", Georgia, Serif;
+  color: rgb(54, 89, 181);
+  margin-top: 20px;
+}
+
+.shortdescription{
+  font-size: 11px;
+  font-family: "Times New Roman", Georgia, Serif;
+}
+
+.hotellistview{
+  background-color: #FFEBCD;
+  margin-bottom: 20px;
+}
+
+.loginimagesize{
+  height:60px;
+  padding-right: 20px;
+}
+
+.logo{
+  font-size:45px !important;
+  font-family: "Times New Roman", Georgia, Serif;
+  color:#F7520A;
+}
+.homebuttonalign{
+  margin-right: 20px !important;
 }

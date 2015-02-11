@@ -1,6 +1,12 @@
 extends layout
 
 block content
+	nav.navbar.navbar-default
+				.navbar-header.navbar-brand.container-fluid
+					.logo
+						B Hotel Aggregator
+				.navbar-right.homebuttonalign
+					a(href='/').btn.btn-info.navbar-btn(type='button') Home
 	.row
 		.col-md-6.col-md-offset-3.searchForm
 			form(action='signup' method='post')

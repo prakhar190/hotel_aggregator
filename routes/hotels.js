@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var http = require('http');
-var builder = require('xmlbuilder');
+var colors =require('colors');
 var healthstatus= require('../ping/health');
 var expedia= require('expedia')({apiKey:"7pb5axaj6nm9yrk3f2ujajf5",cid:"55505",minorRev:"28",currencyCode:"INR"});
 
@@ -28,28 +28,36 @@ router.post('/search', function(req, res) {
 			if(health=='True')
 			{	
 				expedia.hotels.list(options, function(err, hotel_search_response){
-    			if(err)throw new Error(err);
-    			//console.log(hotel_search_response.HotelListResponse.HotelList.HotelSummary.length);
-    			//For saving The star value of hotel in the array star 
-						var star= new Array(); 
-						for(i=0;i<hotel_search_response.HotelListResponse.HotelList.HotelSummary.length;i++) 
-							{ 
-								var s=hotel_search_response.HotelListResponse.HotelList.HotelSummary[i].hotelRating 
+    				if(err)throw new Error(err);
+						
+
+						
+						if(hotel_search_response.HotelListResponse.HotelList)
+						{
+							var star= new Array();
+							//console.log(hotel_search_response.HotelListResponse.HotelList.HotelSummary.length);
+							//For saving The star value of hotel in the array star  
+							for(i=0;i<hotel_search_response.HotelListResponse.HotelList.HotelSummary.length;i++) 
+								{ 
+									var s=hotel_search_response.HotelListResponse.HotelList.HotelSummary[i].hotelRating 
 						 
-								star[i]=parseInt(s); 
+									star[i]=parseInt(s); 
 
-							} 
+								}
+								//console.log(star);
+								console.log(req); 
+							console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Success>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".green.bold.underline);
+							res.render('index',{title:'Hotel Search',hotels:hotel_search_response,star:star,user:req.user});
+						} 
+						else
+						{
+							console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<No Data Received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".red.bold.underline);
+							res.redirect('/');
+						}
+				});	//end of expedia.hotels.list	
 
-						//console.log(star);
-						console.log(req) 
 						
-
-						
-    			
-    			res.render('index',{title:'Hotel Search',hotels:hotel_search_response,star:star,user:req.user});
-				});
-				
-			}//end of if
+    		}//end of if
 			else
 			{
 				res.redirect('/');
@@ -62,4 +70,3 @@ router.post('/search', function(req, res) {
 });// end of post search
 
 module.exports = router;
-

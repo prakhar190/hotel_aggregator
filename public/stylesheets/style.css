@@ -52,10 +52,9 @@ span{
 }
 
 .welcome{
-  margin-top: 30px;
 	font-size: 15px;
 	font-family: "Times New Roman", Georgia, Serif;
-	color:rgba(21, 6, 231, 0.74);
+	color:rgba(21, 6, 231, 0.74) !important;
 }
 
 .message{
@@ -115,9 +114,10 @@ h2.error-message{
 }
 
 .size{
-  height: 30px;
+  height: 31px;
   width: 30px;
   text-decoration: none;
+  margin-top: 4px;
 }
 
 .hotelimage{
@@ -155,4 +155,7 @@ h2.error-message{
 }
 .homebuttonalign{
   margin-right: 20px !important;
+}
+.align{
+  margin-right: 100px !important;
 }

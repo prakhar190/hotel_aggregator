@@ -20,6 +20,7 @@ module.exports = function(passport){
 		res.render('login', { message: req.flash('message') });
 	});
 
+	
 	/* Handle Login POST */
 	router.post('/login', passport.authenticate('login', {
 		successRedirect: '/',
@@ -27,10 +28,13 @@ module.exports = function(passport){
 		failureFlash : true  
 	}));
 
+	
 	/* GET Registration Page */
 	router.get('/signup', function(req, res){
 		res.render('registration',{message: req.flash('message')});
 	});
+
+	
 
 	/* Handle Registration POST */
 	router.post('/signup', passport.authenticate('signup', {
@@ -39,22 +43,23 @@ module.exports = function(passport){
 		failureFlash : true  
 	}));
 
-	/* GET Home Page */
-	/*router.get('/home', isAuthenticated, function(req, res){
-		res.render('index', { user: req.user });
-	});
+	
 
 	/* Handle Logout */
 	router.get('/signout', function(req, res) {
 		req.logout();
 		res.redirect('/');
 	});
+	
+	
+	// Handle Signout
 	router.get('/signout', function(req, res) {
 		req.logout();
 		res.redirect('/');
 	});
 
-
+	
+	// Handle Facebook Authentication
 	router.get('/auth/facebook', passport.authenticate('facebook',{scope:'email'}));
 	router.get('/auth/facebook/callback',passport.authenticate('facebook',{ 
        	successRedirect : '/', 

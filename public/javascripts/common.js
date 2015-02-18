@@ -3,10 +3,14 @@ $(document).ready(function(){
 	
 
 	$('#input_checkindate').pickadate({
-		min: 0.2
+		min: 1,
+		format: 'mm/dd/yyyy',
+		formatSubmit: 'dd/mm/yyyy'
 		
 	});
 	$('#input_checkoutdate').pickadate({
-		min:1
+		min:2,
+		format: 'mm/dd/yyyy',
+		formatSubmit: 'dd/mm/yyyy'
 	});
 });

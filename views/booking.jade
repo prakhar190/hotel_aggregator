@@ -1,0 +1,138 @@
+extends layout
+
+block content
+	nav.navbar.navbar-default
+				.navbar-header.navbar-brand.container-fluid
+					.logo
+						B Hotel Aggregator
+				if (user)
+					.navbar-right.align
+						img.loginimagesize(src=user.image)
+						a(href='/users/signout').btn.btn-info.navbar-btn.align(type='button') SignOut
+						.navbar-text
+							p Signed in as #{user.firstname} #{user.lastname}
+				else
+					.navbar-right.align
+						a(href='/users/auth/facebook') 
+							img.size(src='../images/fblogin.png')
+						&nbsp; &nbsp;	
+						a(href='/users/login').btn.btn-info.navbar-btn(type='button') Login
+	form(action='/hotels/book' method='post')
+		.row
+			.col-md-8.col-md-offset-2.bookingform 
+				
+				h3 Who's Travelling?
+				.row
+					.col-md-6
+						.form-group
+							label First Name
+							input(type='text' name='firstname' class='form-control' placeholder='First Name' required)
+					.col-md-6
+						.form-group
+							label Last Name
+							input(type='text' name='lastname' class='form-control' placeholder='Last Name' required)
+				.row
+					.col-md-6
+						.form-group
+							label Mobile Number
+							input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you')
+
+		.row
+			.col-md-8.col-md-offset-2.bookingform
+				h3 How would you like to pay?
+				.row
+					.col-md-6
+						.form-group
+							label Debit/Credit card number 
+							input(type='text' name='cardnumber' placeholder='Card Number' class ='form-control')
+
+				.row
+					.col-md-4
+						.form-group
+								label Card Type
+								select(name='cardtype' class='dropdown' class='form-control')
+									option(value='Mastercard') Master Card
+										option(value='Visacard') Visa Card
+				.row
+					.col-md-4
+						.form-group
+							label Expiration Date
+				.row
+					.col-md-2
+						.form-group
+								select(name='month' class='dropdown' class='form-control')
+									option(value='1') Month
+										option(value='1') 01-Jan
+										option(value='2') 02-Feb
+										option(value='3') 03-Mar
+										option(value='4') 04-Apr
+										option(value='5') 05-May
+										option(value='6') 06-Jun
+										option(value='7') 07-Jul
+										option(value='8') 08-Aug
+										option(value='9') 09-Sep
+										option(value='10') 10-Oct
+										option(value='11') 11-Nov
+										option(value='12') 12-Dec
+					.col-md-2
+						.form-group
+								select(name='year' class='dropdown' class='form-control')
+									option(value='2015') Year
+										option(value='2015') 2015
+										option(value='2016') 2016
+										option(value='2017') 2017
+										option(value='2018') 2018
+										option(value='2019') 2019
+										option(value='2020') 2020
+										option(value='2021') 2021
+										option(value='2022') 2022
+										option(value='2023') 2023
+										option(value='2024') 2024
+										option(value='2025') 2025
+										option(value='2026') 2026
+										option(value='2027') 2027
+										option(value='2028') 2028
+										option(value='2029') 2029
+										option(value='2030') 2030
+										option(value='2031') 2031
+										option(value='2032') 2032
+										option(value='2033') 2033
+										option(value='2034') 2034
+				.row
+					.col-md-2
+						.form-group
+							label Security Code 
+							input(type='text' name='securitycode' class='form-control' required)
+				.row
+					.col-md-6
+						.form-group
+							label CardHolder Name 
+							input(type='text' name='cardholdername' class='form-control' required)
+		.row
+			.col-md-8.col-md-offset-2.bookingform
+				h3 Where should we send your confirmation?
+				span Please enter the email address where you would like to receive your confirmation.
+				.row
+					.col-md-6
+						.form-group
+							label Email address 
+							input(type='text' name='confirmationemail' class='form-control' required)											
+
+		.row
+			.col-md-8.col-md-offset-2.bookingform
+				h3 Review and book your trip
+				b Important information about your booking 
+				ul
+					li
+						p To register at this property, guests who are Indian citizens must provide a valid photo identity card issued by the Government of India. 
+					li
+						p Permanent Account Number (PAN) cards will not be accepted due to national regulations. 
+					li
+						p Guests who are foreign nationals must present a valid passport and visa. 
+					li
+						p Indian citizens must show a PAN card at check-out for cash transactions exceeding INR 25000.
+
+				p.terms By selecting to complete this booking I acknowledge that I have read and accept the rules and restrictions, Terms of Use and Privacy Policy.
+				.row
+					.col-md-12
+						input(type='submit' value='Complete Booking' class='btn btn-danger btn-search-hotel')

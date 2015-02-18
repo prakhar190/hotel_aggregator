@@ -19,6 +19,7 @@ block content
 							img.size(src='../images/fblogin.png')
 						&nbsp; &nbsp;	
 						a(href='/users/login').btn.btn-info.navbar-btn(type='button') Login
+						
 							
 					
 					
@@ -33,25 +34,13 @@ block content
 					.row
 						.col-md-6
 							.form-group
-								-var today=new Date();
-								-var yyyy=today.getFullYear();
-								-var mm=today.getMonth();
-								-var dd=today.getDate();
-								-var months = [ "January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December" ];
-								-today=dd+' '+months[mm]+', '+yyyy
-								-mm++;
-								-var tomorrow=new Date(yyyy+'-'+mm+'-'+dd);
-								-tomorrow.setDate(tomorrow.getDate()+1)
-								-mm=tomorrow.getMonth();
-								-dd=tomorrow.getDate();
-								-yyyy=tomorrow.getFullYear();
-								-tomorrow=dd+' '+months[mm]+', '+yyyy
+								
 								label Check-in
-								input(type='text' name='checkindate' id='input_checkindate' class='form-control' value=today)
+								input(type='text' name='checkindate' id='input_checkindate' class='form-control' data-value="dd/mm/yyyy" )
 						.col-md-6
 							.form-group
 								label Check-out
-								input(type='text' name='checkoutdate' id='input_checkoutdate' class='form-control' value=tomorrow)
+								input(type='text' name='checkoutdate' id='input_checkoutdate' class='form-control' data-value="dd/mm/yyyy" )
 					.row
 						.col-md-4
 							.form-group
@@ -94,44 +83,48 @@ block content
 					pre Nothing Found
 				if hotels
 					each item,i in hotels.HotelListResponse.HotelList.HotelSummary
-						div.hotellistview
-							.row
-								.col-md-3
-									//To use good quality Images 
-									-var thumbnail=item.thumbNailUrl.split('_t.jpg')
-									-var goodqualitythumbnail=thumbnail[0]
-									if item.thumbNailUrl
-										img.hotelimage(src='http://media2.expedia.com'+goodqualitythumbnail+'_l.jpg')
-									else
-										img(src='/images/no-image.png' alt='No Image')
-								.col-md-6
-									
-									-var hotelname=JSON.stringify(item.name)
-									.hotelname
-										=hotelname.replace(/\"/g,"")
-									=item.locationDescription
-									-var l=star[i]
-									.starcolor
+						a(href='hotelinfo/#{item.hotelId}')
+							div.hotellistview
+								.row
+									.col-md-3
+										//To use good quality Images 
+										-var thumbnail=item.thumbNailUrl.split('_t.jpg')
+										-var goodqualitythumbnail=thumbnail[0]
+										if item.thumbNailUrl
+											img.hotelimage(src='http://media2.expedia.com'+goodqualitythumbnail+'_l.jpg')
+										else
+											img(src='/images/no-image.png' alt='No Image')
+									.col-md-6
+										
+										-var hotelname=JSON.stringify(item.name)
+										.hotelname
+											=hotelname.replace(/\"/g,"")
+										.locationDescription
+											=item.locationDescription
+										-var l=star[i]
+										.starcolor
+											&nbsp;
+											-for(var j=0;j<l;j++)
+												&#9733;
+										br
+										-var split=item.shortDescription.split('/&gt;')
+										-var shortDescription=split[1]
+										.shortdescription
+											=shortDescription
+										br
+										.locationDescription
+											P Trip Advisior Rating
+												&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												img(src=item.tripAdvisorRatingUrl)
+									.col-md-3.rate
+										-var lowestrate=JSON.stringify(item.lowRate).split('.')
+										-var roundlowrate=lowestrate[0]
+										&#8377;
+										=roundlowrate.replace(/\"/g,"")
 										&nbsp;
-										-for(var j=0;j<l;j++)
-											&#9733;
-									br
-									-var split=item.shortDescription.split('/&gt;')
-									-var shortDescription=split[1]
-									.shortdescription
-										=shortDescription
-									br
-									P Trip Advisior Rating
-									img(src=item.tripAdvisorRatingUrl)
-								.col-md-3.rate
-									-var lowestrate=JSON.stringify(item.lowRate).split('.')
-									-var roundlowrate=lowestrate[0]
-									&#8377;
-									=roundlowrate.replace(/\"/g,"")
-									&nbsp;
-									span per night
+										span per night
 
-								
+									
 								
 								
 						

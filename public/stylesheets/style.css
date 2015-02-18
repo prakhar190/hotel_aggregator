@@ -122,20 +122,21 @@ h2.error-message{
 
 .hotelimage{
   width: 180px;
-  height: 210px;
+  height: 200px;
   margin-top: 0;
 }
 
 .hotelname{
-  font-size: 17px;
+  font-size: 20px;
   font-family: "Times New Roman", Georgia, Serif;
   color: rgb(54, 89, 181);
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .shortdescription{
   font-size: 11px;
   font-family: "Times New Roman", Georgia, Serif;
+  color: rgba(0, 0, 0, 0.74)
 }
 
 .hotellistview{
@@ -153,9 +154,87 @@ h2.error-message{
   font-family: "Times New Roman", Georgia, Serif;
   color:#F7520A;
 }
+
 .homebuttonalign{
   margin-right: 20px !important;
 }
+
 .align{
   margin-right: 100px !important;
+}
+
+.hotelinformationname{
+  font-size: 25px;
+  font-family: "Times New Roman", Georgia, Serif;
+  display: inline;
+}
+
+.hotelinformationview{
+  background-color: #FFEBCD;
+  margin-bottom: 20px;
+  padding:20px;
+}
+
+.infostarcolor {
+  display: inline;
+  text-align: left;
+  border-top: 0;
+  border-left:50px;
+  color: rgba(255, 87, 0, 0.86);
+  font-size: 20px;
+}
+
+.hotelinformationaddress{
+  font-size: 15px;
+  font-family: "Times New Roman", Georgia, Serif;
+}
+
+.locationDescription{
+  font-size: 15px;
+  font-family: "Times New Roman", Georgia, Serif;
+  color:black;
+  display: inline;
+}
+
+.slidersize{
+  width:500px !important;
+  height: 300px !important;
+}
+
+.hotelinformationimage{
+  width:500px !important;
+  height:300px !important;
+}
+
+.hotelamenties{
+  font-size: 12px;
+  font-family: "Times New Roman", Georgia, Serif;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.caption{
+  font-size: 15px;
+  font-family: "Times New Roman", Georgia, Serif;
+  color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.tableview{
+  width: 100% !important; 
+}
+
+.tablepadding{
+  padding: 20px !important;
+}
+
+.bookingform{
+  
+  background-color: #F2F2F2;
+  padding-top: 10px;
+  padding-bottom:10px;
+  margin-top: 15px;
+}
+.terms{
+  color:blue;
+  font-family: "Times New Roman", Georgia, Serif;
 }

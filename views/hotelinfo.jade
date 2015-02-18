@@ -1,0 +1,96 @@
+extends layout
+
+block content
+		nav.navbar.navbar-default
+				.navbar-header.navbar-brand.container-fluid
+					.logo
+						B Hotel Aggregator
+				if (user)
+					.navbar-right.align
+						img.loginimagesize(src=user.image)
+						a(href='/users/signout').btn.btn-info.navbar-btn.align(type='button') SignOut
+						.navbar-text
+							p Signed in as #{user.firstname} #{user.lastname}
+					
+					
+				else
+					.navbar-right.align
+						a(href='/users/auth/facebook') 
+							img.size(src='../images/fblogin.png')
+						&nbsp; &nbsp;	
+						a(href='/users/login').btn.btn-info.navbar-btn(type='button') Login
+		.row
+			.col-md-10.col-md-offset-1
+				div.hotelinformationview
+					.row
+						.col-md-12
+							.hotelinformationname
+								=hotelInfo.HotelInformationResponse.HotelSummary.name
+							.infostarcolor
+								-for(var j=0;j<star;j++)
+									&#9733;
+					
+							.hotelinformationaddress
+								p   
+									=hotelInfo.HotelInformationResponse.HotelSummary.address1+', '
+									=hotelInfo.HotelInformationResponse.HotelSummary.locationDescription+', '
+									=hotelInfo.HotelInformationResponse.HotelSummary.city+' - '
+									=hotelInfo.HotelInformationResponse.HotelSummary.postalCode
+								//img(src=hotelInfo.HotelInformationResponse.HotelImages.HotelImage[0].url)
+							
+						.row
+
+							.col-md-4
+								.hotelamenties
+									
+									ul
+										each item in hotelInfo.HotelInformationResponse.PropertyAmenities.PropertyAmenity 
+											li=item.amenity
+						
+							.col-md-7.col-md-offset-1
+								.slidersize#myCarousel.carousel.slide
+									// Carousel indicators
+									ol.carousel-indicators
+										li.active(data-target='#myCarousel', data-slide-to='0')
+										each item,i in hotelInfo.HotelInformationResponse.HotelImages.HotelImage       
+											li(data-target='#myCarousel', data-slide-to=i+1)
+
+										//li(data-target='#myCarousel', data-slide-to='2')
+
+									// Carousel items
+									.carousel-inner
+										.item.active
+											img.hotelinformationimage(src=hotelInfo.HotelInformationResponse.HotelImages.HotelImage[0].url, alt='First slide')
+										each item,i in hotelInfo.HotelInformationResponse.HotelImages.HotelImage
+											.item
+												img.hotelinformationimage(src=item.url, alt='Second slide')
+												p.caption=item.caption
+										//.item
+											img(src='/bootstrap/images/slide3.png', alt='Third slide')
+									// Carousel nav
+									a.carousel-control.left(href='#myCarousel', data-slide='prev') &lsaquo;
+									a.carousel-control.right(href='#myCarousel', data-slide='next') &rsaquo;
+
+				div.hotelinformationview
+					table.tableview
+						tr
+							th.tablepadding 
+								|	Room Type
+							th.tablepadding 
+								|	Total amount with Taxes
+							th.tablepadding
+
+
+						each item in hotelAvail.HotelRoomAvailabilityResponse.HotelRoomResponse
+							tr
+								td.tablepadding
+									=item.roomTypeDescription
+								td.tablepadding
+									=item.RateInfos.RateInfo.ChargeableRateInfo["@total"]
+								td.tablepadding
+									a(href='/hotels/hotelbooking/#{hotelAvail.HotelRoomAvailabilityResponse.hotelId}/#{item.supplierType}/#{item.RateInfos.RateInfo.RoomGroup.Room.rateKey}/#{item.roomTypeCode}/#{item.rateCode}/#{item.RateInfos.RateInfo.ChargeableRateInfo["@total"]}/#{item.BedTypes.BedType["@id"]}').btn.btn-danger(type='button') Book
+
+
+
+
+							

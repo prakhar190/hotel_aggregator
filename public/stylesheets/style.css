@@ -238,3 +238,9 @@ h2.error-message{
   color:blue;
   font-family: "Times New Roman", Georgia, Serif;
 }
+
+.errormessage{
+  font-size: 20px;
+  font-family: "Times New Roman", Georgia, Serif;
+  color:red;
+}

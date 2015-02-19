@@ -1,0 +1,27 @@
+extends layout
+
+block content
+		nav.navbar.navbar-default
+				.navbar-header.navbar-brand.container-fluid
+					.logo
+						B Hotel Aggregator
+				if (user)
+					.navbar-right.align
+						img.loginimagesize(src=user.image)
+						a(href='/users/signout').btn.btn-info.navbar-btn.align(type='button') SignOut
+						.navbar-text
+							p Signed in as #{user.firstname} #{user.lastname}
+					
+					
+				else
+					.navbar-right.align
+						a(href='/users/auth/facebook') 
+							img.size(src='../images/fblogin.png')
+						&nbsp; &nbsp;	
+						a(href='/users/login').btn.btn-info.navbar-btn(type='button') Login
+		.row
+			.col-md-10.col-md-offset-1
+				div.hotelinformationview
+					h1.errormessage Congratulations you have successfully booked. Kindly check your email for details
+					a(href='/').btn.btn-info.navbar-btn(type='button') Home
+					a(href='https://travelnow.com/selfService/searchform?cid=55505&lang=en').btn.btn-danger.btn-search-hotel(type='button') Check Your Booking Details On Travel Now

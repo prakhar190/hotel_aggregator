@@ -30,12 +30,12 @@ block content
 					.col-md-6
 						.form-group
 							label Last Name
-							input(type='text' name='lastname' class='form-control' placeholder='Last Name' required)
+							input(type='text' name='lastname' class='form-control' placeholder='Last Name' required )
 				.row
 					.col-md-6
 						.form-group
 							label Mobile Number
-							input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you')
+							input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you' required)
 
 		.row
 			.col-md-8.col-md-offset-2.bookingform
@@ -44,7 +44,7 @@ block content
 					.col-md-6
 						.form-group
 							label Debit/Credit card number 
-							input(type='text' name='cardnumber' placeholder='Card Number' class ='form-control')
+							input(type='text' name='cardnumber' placeholder='Card Number' class ='form-control' value='5401999999999999')
 
 				.row
 					.col-md-4
@@ -61,7 +61,7 @@ block content
 					.col-md-2
 						.form-group
 								select(name='month' class='dropdown' class='form-control')
-									option(value='1') Month
+									option(value='11') Month
 										option(value='1') 01-Jan
 										option(value='2') 02-Feb
 										option(value='3') 03-Mar
@@ -102,7 +102,7 @@ block content
 					.col-md-2
 						.form-group
 							label Security Code 
-							input(type='text' name='securitycode' class='form-control' required)
+							input(type='password' name='securitycode' class='form-control')
 				.row
 					.col-md-6
 						.form-group
@@ -135,4 +135,11 @@ block content
 				p.terms By selecting to complete this booking I acknowledge that I have read and accept the rules and restrictions, Terms of Use and Privacy Policy.
 				.row
 					.col-md-12
+						input(type='hidden' name='hotelId' value=req.param('hotelId'))
+						input(type='hidden' name='supplierType' value=req.param('supplierType'))
+						input(type='hidden' name='rateKey' value=req.param('rateKey'))
+						input(type='hidden' name='roomTypeCode' value=req.param('roomTypeCode'))
+						input(type='hidden' name='rateCode' value=req.param('rateCode'))
+						input(type='hidden' name='chargeableRate' value=req.param('chargeableRate'))
+						input(type='hidden' name='bedTypeId' value=req.param('bedTypeId'))
 						input(type='submit' value='Complete Booking' class='btn btn-danger btn-search-hotel')

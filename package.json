@@ -16,6 +16,7 @@
     "mongoose": "^3.8.21",
     "morgan": "~1.5.1",
     "passport-facebook": "^1.0.3",
+    "request": "^2.53.0",
     "serve-favicon": "~2.2.0",
     "xmlbuilder": "^2.4.6"
   },

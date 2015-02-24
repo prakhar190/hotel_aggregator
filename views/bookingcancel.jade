@@ -1,0 +1,29 @@
+extends layout
+
+block content
+	.row
+		.col-md-8.col-md-offset-2.searchForm  
+			form(action='cancelbooking' method='post')
+				h3 Enter the following details for cancellation
+				.row
+					.col-md-6
+						.form-group   
+							label Itinerary Id
+							input(type='text' name='itineraryid' required class='form-control' placeholder='Check your email for itinerary id')
+					.col-md-6
+						.form-group
+							label Email
+							input(type='text' name='email' required placeholder='Enter the email you used for booking' class='form-control')
+				.row
+					.col-md-4
+						.form-group
+							label Confirmation Number
+							input(type='password' name='connumber' required)
+				.row
+					.col-md-12
+						.form-group
+							label Reson for cancellation
+							textarea(name='reason' rows='3' class='form-control')
+				.row
+					.col-md-12
+						input(type='submit' value='Cancel Booking' class='btn btn-danger btn-search-hotel')				

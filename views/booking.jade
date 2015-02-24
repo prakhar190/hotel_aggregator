@@ -1,24 +1,8 @@
 extends layout
 
 block content
-	nav.navbar.navbar-default
-				.navbar-header.navbar-brand.container-fluid
-					.logo
-						B Hotel Aggregator
-				if (user)
-					.navbar-right.align
-						img.loginimagesize(src=user.image)
-						a(href='/users/signout').btn.btn-info.navbar-btn.align(type='button') SignOut
-						.navbar-text
-							p Signed in as #{user.firstname} #{user.lastname}
-				else
-					.navbar-right.align
-						a(href='/users/auth/facebook') 
-							img.size(src='../images/fblogin.png')
-						&nbsp; &nbsp;	
-						a(href='/users/login').btn.btn-info.navbar-btn(type='button') Login
 	form(action='/hotels/book' method='post')
-		.row
+		.row.commanalign
 			.col-md-8.col-md-offset-2.bookingform 
 				
 				h3 Who's Travelling?
@@ -26,16 +10,25 @@ block content
 					.col-md-6
 						.form-group
 							label First Name
-							input(type='text' name='firstname' class='form-control' placeholder='First Name' required)
+							if user
+								input(type='text' name='firstname' class='form-control' placeholder='First Name' required value=user.firstname)
+							else
+								input(type='text' name='firstname' class='form-control' placeholder='First Name' required)
 					.col-md-6
 						.form-group
 							label Last Name
-							input(type='text' name='lastname' class='form-control' placeholder='Last Name' required )
+							if user
+								input(type='text' name='lastname' class='form-control' placeholder='Last Name' required value=user.lastname)
+							else
+								input(type='text' name='lastname' class='form-control' placeholder='Last Name' required)
 				.row
 					.col-md-6
 						.form-group
 							label Mobile Number
-							input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you' required)
+							if user
+								input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you' required value=user.mobile)
+							else
+								input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you' required)
 
 		.row
 			.col-md-8.col-md-offset-2.bookingform
@@ -115,8 +108,11 @@ block content
 				.row
 					.col-md-6
 						.form-group
-							label Email address 
-							input(type='text' name='confirmationemail' class='form-control' required)											
+							label Email address
+							if user 
+								input(type='text' name='confirmationemail' class='form-control' required value=user.email)
+							else
+								input(type='text' name='confirmationemail' class='form-control' required)											
 
 		.row
 			.col-md-8.col-md-offset-2.bookingform

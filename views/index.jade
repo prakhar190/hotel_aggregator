@@ -1,136 +1,115 @@
 extends layout
 
 block content
-		nav.navbar.navbar-default
-				.navbar-header.navbar-brand.container-fluid
-					.logo
-						B Hotel Aggregator
-				if (user)
-					.navbar-right.align
-						img.loginimagesize(src=user.image)
-						a(href='/users/signout').btn.btn-info.navbar-btn.align(type='button') SignOut
-						.navbar-text
-							p Signed in as #{user.firstname} #{user.lastname}
-					
-					
-				else
-					.navbar-right.align
-						a(href='/users/auth/facebook') 
-							img.size(src='../images/fblogin.png')
-						&nbsp; &nbsp;	
-						a(href='/users/login').btn.btn-info.navbar-btn(type='button') Login
-						
+	.navbar-fixed-bottom
+		.navbar-right.cancelbuttonalign
+			a(href='/hotels/cancelbooking').btn.btn-danger.navbar-btn(type='button') Cancel Booking
+	.row
+		.col-md-8.col-md-offset-2.searchForm  
+			form(action='/hotels/search' method='post')
+				.form-group   
+					label Where
+					input(type='text' name='location' required class='form-control' placeholder='City,Region,Hotel')
+				.row
+					.col-md-6
+						.form-group
+							
+							label Check-in
+							input(type='text' name='checkindate' id='input_checkindate' class='form-control' data-value="dd/mm/yyyy" )
+					.col-md-6
+						.form-group
+							label Check-out
+							input(type='text' name='checkoutdate' id='input_checkoutdate' class='form-control' data-value="dd/mm/yyyy" )
+				.row
+					.col-md-4
+						.form-group
+							label Rooms
+							select(name='numberofrooms' class='dropdown' class='form-control')
+								option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+					.col-md-4
+						.form-group
+							label Adults &nbsp;
+								span 12+ yrs
+							select(name='numberofadults' class='form-control')
+								option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+					.col-md-4
+						.form-group
+							label Child &nbsp;
+								span 0-11 yrs
+							select(name='numberofchild' class='form-control')
+								option(value='0') 0
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+				
+
+				input(type='submit' value='Search hotels' class='btn btn-danger btn-search-hotel')
+
+	br
+	.row
+		.col-md-8.col-md-offset-2
+			//if hotels
+				pre=JSON.stringify(hotels)
+			//else
+				pre Nothing Found
+			if hotels
+				each item,i in hotels.HotelListResponse.HotelList.HotelSummary
+					a(href='hotelinfo/#{item.hotelId}')
+						div.hotellistview
+							.row
+								.col-md-3
+									//To use good quality Images 
+									-var thumbnail=item.thumbNailUrl.split('_t.jpg')
+									-var goodqualitythumbnail=thumbnail[0]
+									if item.thumbNailUrl
+										img.hotelimage(src='http://media2.expedia.com'+goodqualitythumbnail+'_l.jpg')
+									else
+										img(src='/images/no-image.png' alt='No Image')
+								.col-md-6
+									
+									-var hotelname=JSON.stringify(item.name)
+									.hotelname
+										=hotelname.replace(/\"/g,"")
+									.locationDescription
+										=item.locationDescription
+									-var l=star[i]
+									.starcolor
+										&nbsp;
+										-for(var j=0;j<l;j++)
+											&#9733;
+									br
+									-var split=item.shortDescription.split('/&gt;')
+									-var shortDescription=split[1]
+									.shortdescription
+										=shortDescription
+									br
+									.locationDescription
+										P Trip Advisior Rating
+											&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											img(src=item.tripAdvisorRatingUrl)
+								.col-md-3.rate
+									-var lowestrate=JSON.stringify(item.lowRate).split('.')
+									-var roundlowrate=lowestrate[0]
+									&#8377;
+									=roundlowrate.replace(/\"/g,"")
+									&nbsp;
+									span per night
+
+								
+							
 							
 					
-					
-	
-
-		.row
-			.col-md-8.col-md-offset-2.searchForm  
-				form(action='/hotels/search' method='post')
-					.form-group   
-						label Where
-						input(type='text' name='location' required class='form-control' placeholder='City,Region,Hotel')
-					.row
-						.col-md-6
-							.form-group
-								
-								label Check-in
-								input(type='text' name='checkindate' id='input_checkindate' class='form-control' data-value="dd/mm/yyyy" )
-						.col-md-6
-							.form-group
-								label Check-out
-								input(type='text' name='checkoutdate' id='input_checkoutdate' class='form-control' data-value="dd/mm/yyyy" )
-					.row
-						.col-md-4
-							.form-group
-								label Rooms
-								select(name='numberofrooms' class='dropdown' class='form-control')
-									option(value='1') 1
-										option(value='2') 2
-										option(value='3') 3
-										option(value='4') 4
-										option(value='5') 5
-										option(value='6') 6
-						.col-md-4
-							.form-group
-								label Adults &nbsp;
-									span 12+ yrs
-								select(name='numberofadults' class='form-control')
-									option(value='1') 1
-										option(value='2') 2
-										option(value='3') 3
-										option(value='4') 4
-						.col-md-4
-							.form-group
-								label Child &nbsp;
-									span 0-11 yrs
-								select(name='numberofchild' class='form-control')
-									option(value='0') 0
-										option(value='1') 1
-										option(value='2') 2
-										option(value='3') 3
-					
-
-					input(type='submit' value='Search hotels' class='btn btn-danger btn-search-hotel')
-
-		br
-		.row
-			.col-md-8.col-md-offset-2
-				//if hotels
-					pre=JSON.stringify(hotels)
-				//else
-					pre Nothing Found
-				if hotels
-					each item,i in hotels.HotelListResponse.HotelList.HotelSummary
-						a(href='hotelinfo/#{item.hotelId}')
-							div.hotellistview
-								.row
-									.col-md-3
-										//To use good quality Images 
-										-var thumbnail=item.thumbNailUrl.split('_t.jpg')
-										-var goodqualitythumbnail=thumbnail[0]
-										if item.thumbNailUrl
-											img.hotelimage(src='http://media2.expedia.com'+goodqualitythumbnail+'_l.jpg')
-										else
-											img(src='/images/no-image.png' alt='No Image')
-									.col-md-6
-										
-										-var hotelname=JSON.stringify(item.name)
-										.hotelname
-											=hotelname.replace(/\"/g,"")
-										.locationDescription
-											=item.locationDescription
-										-var l=star[i]
-										.starcolor
-											&nbsp;
-											-for(var j=0;j<l;j++)
-												&#9733;
-										br
-										-var split=item.shortDescription.split('/&gt;')
-										-var shortDescription=split[1]
-										.shortdescription
-											=shortDescription
-										br
-										.locationDescription
-											P Trip Advisior Rating
-												&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												img(src=item.tripAdvisorRatingUrl)
-									.col-md-3.rate
-										-var lowestrate=JSON.stringify(item.lowRate).split('.')
-										-var roundlowrate=lowestrate[0]
-										&#8377;
-										=roundlowrate.replace(/\"/g,"")
-										&nbsp;
-										span per night
-
-									
-								
-								
-						
-				else 
-					pre Nothing Found
+			else 
+				pre Nothing Found
 
 
 
-				
+			

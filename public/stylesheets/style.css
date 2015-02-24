@@ -15,10 +15,10 @@ a {
 }
 
 .searchForm{
-	
 	background-color: #F2F2F2;
   padding-top: 20px;
   padding-bottom:20px;
+  margin-top:70px;
 }
 
 .starcolor {
@@ -243,4 +243,17 @@ h2.error-message{
   font-size: 20px;
   font-family: "Times New Roman", Georgia, Serif;
   color:red;
+}
+
+.cancelbuttonalign{
+  margin-right: 50px !important;
+}
+
+.commanalign{
+  margin-top:70px;
+}
+
+.backbuttonalign{
+  margin-top:70px;
+  margin-left:10px;
 }

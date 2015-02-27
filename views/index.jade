@@ -9,7 +9,7 @@ block content
 			form(action='/hotels/search' method='post')
 				.form-group   
 					label Where
-					input(type='text' name='location' required class='form-control' placeholder='City,Region,Hotel')
+					input#autocomplete(type='text' name='location' class='form-control' placeholder='Enter destination' data-validation='custom' data-validation-regexp='^([a-zA-Z" ",-()]+)$' data-validation-error-msg='You entered invalid place')
 				.row
 					.col-md-6
 						.form-group
@@ -101,7 +101,7 @@ block content
 									&#8377;
 									=roundlowrate.replace(/\"/g,"")
 									&nbsp;
-									span per night
+									span.small per night
 
 								
 							

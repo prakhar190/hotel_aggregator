@@ -45,10 +45,10 @@ pre{
   margin-top:20px;
 }
 
-span{
-	font-size: 10px;
-	font-family: "Times New Roman", Georgia, Serif;
-	color: black;
+.small{
+	font-size: 10px !important;
+	font-family: "Times New Roman", Georgia, Serif !important;
+	color: black !important;
 }
 
 .welcome{
@@ -220,7 +220,10 @@ h2.error-message{
 }
 
 .tableview{
-  width: 100% !important; 
+  width: 100% !important;
+}
+.tablerowview{
+  border-bottom:3px solid !important;
 }
 
 .tablepadding{
@@ -256,4 +259,20 @@ h2.error-message{
 .backbuttonalign{
   margin-top:70px;
   margin-left:10px;
+}
+
+.internaltablepadding{
+  padding-left: 20px !important;
+}
+
+.tableheading{
+  font-size: 20px !important;
+  font-family: "Times New Roman", Georgia, Serif !important;
+}
+
+.roomtype{
+  font-size: 15px !important;
+  font-family: "Times New Roman", Georgia, Serif !important;
+  font-weight: bold !important;
+  color: rgba(217, 83, 79, 1) !important;
 }

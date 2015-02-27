@@ -11,24 +11,24 @@ block content
 						.form-group
 							label First Name
 							if user
-								input(type='text' name='firstname' class='form-control' placeholder='First Name' required value=user.firstname)
+								input(type='text' name='firstname' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name' value=user.firstname)
 							else
-								input(type='text' name='firstname' class='form-control' placeholder='First Name' required)
+								input(type='text' name='firstname' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
 					.col-md-6
 						.form-group
 							label Last Name
 							if user
-								input(type='text' name='lastname' class='form-control' placeholder='Last Name' required value=user.lastname)
+								input(type='text' name='lastname' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name' value=user.lastname)
 							else
-								input(type='text' name='lastname' class='form-control' placeholder='Last Name' required)
+								input(type='text' name='lastname' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
 				.row
 					.col-md-6
 						.form-group
 							label Mobile Number
 							if user
-								input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you' required value=user.mobile)
+								input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you' data-validation='length number' data-validation-length='10-10' data-validation-error-msg='Mobile number should be numeric and of 10 digits' value=user.mobile)
 							else
-								input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you' required)
+								input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you' data-validation='length number' data-validation-length='10-10' data-validation-error-msg='Mobile number should be numeric and of 10 digits')
 
 		.row
 			.col-md-8.col-md-offset-2.bookingform
@@ -37,7 +37,7 @@ block content
 					.col-md-6
 						.form-group
 							label Debit/Credit card number 
-							input(type='text' name='cardnumber' placeholder='Card Number' class ='form-control' value='5401999999999999')
+							input(type='text' name='cardnumber' placeholder='Card Number' class ='form-control' data-validation='number' data-validation-error-msg='Cardnumber can only have numeric values' value='5401999999999999')
 
 				.row
 					.col-md-4
@@ -53,8 +53,8 @@ block content
 				.row
 					.col-md-2
 						.form-group
-								select(name='month' class='dropdown' class='form-control')
-									option(value='11') Month
+								select(name='month' class='dropdown' class='form-control' data-validation='number' data-validation-error-msg='Select Month')
+									option(value='month') Month
 										option(value='1') 01-Jan
 										option(value='2') 02-Feb
 										option(value='3') 03-Mar
@@ -69,8 +69,8 @@ block content
 										option(value='12') 12-Dec
 					.col-md-2
 						.form-group
-								select(name='year' class='dropdown' class='form-control')
-									option(value='2015') Year
+								select(name='year' class='dropdown' class='form-control' data-validation='number' data-validation-error-msg='Select Year')
+									option(value='Year') Year
 										option(value='2015') 2015
 										option(value='2016') 2016
 										option(value='2017') 2017
@@ -95,12 +95,12 @@ block content
 					.col-md-2
 						.form-group
 							label Security Code 
-							input(type='password' name='securitycode' class='form-control')
+							input(type='password' name='securitycode' class='form-control' data-validation='required' data-validation-error-msg='Code required')
 				.row
 					.col-md-6
 						.form-group
 							label CardHolder Name 
-							input(type='text' name='cardholdername' class='form-control' required)
+							input(type='text' name='cardholdername' class='form-control' data-validation='custom' data-validation-regexp='^([a-zA-Z" "]+)$' data-validation-error-msg='Invalid name')
 		.row
 			.col-md-8.col-md-offset-2.bookingform
 				h3 Where should we send your confirmation?
@@ -110,9 +110,9 @@ block content
 						.form-group
 							label Email address
 							if user 
-								input(type='text' name='confirmationemail' class='form-control' required value=user.email)
+								input(type='text' name='confirmationemail' class='form-control' data-validation='email' data-validation-error-msg='Invalid Email' value=user.email)
 							else
-								input(type='text' name='confirmationemail' class='form-control' required)											
+								input(type='text' name='confirmationemail' class='form-control' data-validation='email' data-validation-error-msg='Invalid Email')											
 
 		.row
 			.col-md-8.col-md-offset-2.bookingform

@@ -58,23 +58,52 @@ block content
 
 				div.hotelinformationview
 					table.tableview
-						tr
+						tr.tableheading
 							th.tablepadding 
 								|	Room Type
 							th.tablepadding 
-								|	Total amount with Taxes
+								|	Rate Information
 							th.tablepadding
 
 
 						each item in hotelAvail.HotelRoomAvailabilityResponse.HotelRoomResponse
-							tr
+							tr.tablerowview
 								td.tablepadding
-									=item.roomTypeDescription
+									.roomtype
+										=item.roomTypeDescription
 								td.tablepadding
-									=item.RateInfos.RateInfo.ChargeableRateInfo["@total"]
+									table
+										tr
+											td
+												| Per Night
+											td.internaltablepadding
+												=item.RateInfos.RateInfo.ChargeableRateInfo["@maxNightlyRate"]
+										tr
+											td
+												| Total
+											td.internaltablepadding
+												=item.RateInfos.RateInfo.ChargeableRateInfo["@nightlyRateTotal"]
+										tr
+											td
+												|Taxes
+											td.internaltablepadding
+												=item.RateInfos.RateInfo.ChargeableRateInfo["@surchargeTotal"]
+										tr
+											td
+												|------------------------
+												br
+												|Total With Taxes
+												br
+												|------------------------
+											td.internaltablepadding
+												|-----------------
+												br
+												&#8377;
+												=item.RateInfos.RateInfo.ChargeableRateInfo["@total"]
+												br
+												|-----------------
 								td.tablepadding
 									a(href='/hotels/hotelbooking/#{hotelAvail.HotelRoomAvailabilityResponse.hotelId}/#{item.supplierType}/#{item.RateInfos.RateInfo.RoomGroup.Room.rateKey}/#{item.roomTypeCode}/#{item.rateCode}/#{item.RateInfos.RateInfo.ChargeableRateInfo["@total"]}/#{item.BedTypes.BedType["@id"]}').btn.btn-danger(type='button') Book
-
 
 
 

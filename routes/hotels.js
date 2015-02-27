@@ -288,7 +288,7 @@ router.post('/cancelbooking', function(req,res){
                     "HotelRoomCancellationRequest":{
                                                     "itineraryId": req.param('itineraryid'),
                                                     "email":req.param('email'),
-                                                    "reason": req.param('reason'),
+                                                    "reason": req.param('presentation'),
                                                     "confirmationNumber": req.param('connumber')
                                                     }
                 }

@@ -6,7 +6,8 @@ module.exports = function(passport){
 
 	passport.use('signup', new LocalStrategy({
             passReqToCallback : true, // allows us to pass back the entire request to the callback
-            usernameField : 'email'
+            usernameField : 'email', // To change the default username field in passport
+            passwordField : 'pass_confirmation' //to change default password field of passport
         },
         function(req, username, password, done) {
 

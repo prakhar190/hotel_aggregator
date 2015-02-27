@@ -1,6 +1,9 @@
 extends layout
 
 block content
+	.navbar-fixed-top
+			.navbar-left.backbuttonalign
+				a(href='javascript:history.back()').btn.btn-primary.navbar-btn(type='button') Back
 	.row
 		.col-md-8.col-md-offset-2.searchForm  
 			form(action='cancelbooking' method='post')
@@ -9,21 +12,23 @@ block content
 					.col-md-6
 						.form-group   
 							label Itinerary Id
-							input(type='text' name='itineraryid' required class='form-control' placeholder='Check your email for itinerary id')
+							input(type='text' name='itineraryid' data-validation='length number' data-validation-length='8-10' data-validation-error-msg='Invalid Itinerary Id' class='form-control' placeholder='Check your email for itinerary id')
 					.col-md-6
 						.form-group
 							label Email
-							input(type='text' name='email' required placeholder='Enter the email you used for booking' class='form-control')
+							input(type='text' name='email' placeholder='Enter the email you used for booking' data-validation='email' data-validation-error-msg='Invalid Email' class='form-control')
 				.row
 					.col-md-4
 						.form-group
 							label Confirmation Number
-							input(type='password' name='connumber' required)
+							input(type='password' name='connumber' data-validation='required number' data-validation-error-msg='Number required')
 				.row
 					.col-md-12
 						.form-group
-							label Reson for cancellation
-							textarea(name='reason' rows='3' class='form-control')
+							label Reason for cancellation
+							textarea#presentation(name='presentation' rows='3' class='form-control')
+							span#pres-max-length 200 
+							span &nbsp; characters left
 				.row
 					.col-md-12
 						input(type='submit' value='Cancel Booking' class='btn btn-danger btn-search-hotel')				

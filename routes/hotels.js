@@ -7,7 +7,7 @@ var healthstatus = require('../ping/health');
 var config = require('../config/config');
 var request = require('request');
 var expedia = require('expedia')({apiKey:"7pb5axaj6nm9yrk3f2ujajf5",cid:"55505",minorRev:"28",currencyCode:"INR"});
-
+var disclaimer='It is the responsibility of the hotel chain and/or the individual property to ensure the accuracy of the photos displayed. Hotel Aggregator is not responsible for any inaccuracies in the photos.';
 
 
 
@@ -34,7 +34,8 @@ router.post('/search', function(req, res) {
 
 		healthstatus(function(health){
 			if(health=='True')
-			{	
+			{
+                
 				expedia.hotels.list(options, function(err, hotel_search_response){
     				if(err)throw new Error(err);
 						
@@ -60,7 +61,7 @@ router.post('/search', function(req, res) {
 							req.session['checkoutdate']=req.param('checkoutdate');
 						 
 							console.log("Success>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".green.bold.underline);
-							res.render('index',{title:'Hotel Search',hotels:hotel_search_response,star:star,user:req.user});
+							res.render('index',{title:'Hotel Search',hotels:hotel_search_response,star:star,user:req.user,disclaimer:disclaimer});
 						} 
 						else
 						{
@@ -147,7 +148,7 @@ router.get('/hotelinfo/:hotelId', function(req, res){
                             }
                            else
                             {
-    					       res.render('hotelinfo',{title:'Hotel Information',hotelInfo:hotel_information_response,hotelAvail:hotel_available_response,user:req.user,star:star});
+    					       res.render('hotelinfo',{title:'Hotel Information',hotelInfo:hotel_information_response,hotelAvail:hotel_available_response,user:req.user,star:star,disclaimer:disclaimer});
                             }
     					});// end of expedia.hotels.roomImages
     				});//end of expedia.hotels.availability
@@ -261,7 +262,7 @@ router.post('/book', function(req,res){
     				}	
     				if(body.HotelRoomReservationResponse.processedWithConfirmation==true)
     				{
-    					res.render('bookingconfirmation',{title:'Booking Confirm',user:req.user});
+    					res.render('bookingconfirmation',{title:'Booking Confirm',user:req.user,bookingresponse:body});
     					console.log("Booking Done>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".red.bold)
     				}
     				else

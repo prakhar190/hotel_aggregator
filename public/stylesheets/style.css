@@ -276,3 +276,28 @@ h2.error-message{
   font-weight: bold !important;
   color: rgba(217, 83, 79, 1) !important;
 }
+
+.disclaimer{
+  font-size: 15px;
+  font-family: "Times New Roman", Georgia, Serif;
+  color: rgb(52, 18, 176);
+  margin-left: 20px;
+}
+
+.mybooking-btn{
+  margin-left: 50px !important;
+}
+
+.photodisclaimer{
+  font-size: 10px;
+  font-family: "Times New Roman", Georgia, Serif;
+  margin-bottom: 10px;
+}
+
+.totalcharge{
+  font-size: 25px;
+  font-family: "Times New Roman", Georgia, Serif;
+  color:red;
+  font-weight: bold;
+
+}

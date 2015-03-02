@@ -138,4 +138,6 @@ block content
 						input(type='hidden' name='rateCode' value=req.param('rateCode'))
 						input(type='hidden' name='chargeableRate' value=req.param('chargeableRate'))
 						input(type='hidden' name='bedTypeId' value=req.param('bedTypeId'))
+						P.totalcharge 
+							|You will be charged a total of &#8377; #{req.param('chargeableRate')}
 						input(type='submit' value='Complete Booking' class='btn btn-danger btn-search-hotel')

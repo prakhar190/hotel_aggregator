@@ -103,8 +103,12 @@ block content
 												br
 												|-----------------
 								td.tablepadding
-									a(href='/hotels/hotelbooking/#{hotelAvail.HotelRoomAvailabilityResponse.hotelId}/#{item.supplierType}/#{item.RateInfos.RateInfo.RoomGroup.Room.rateKey}/#{item.roomTypeCode}/#{item.rateCode}/#{item.RateInfos.RateInfo.ChargeableRateInfo["@total"]}/#{item.BedTypes.BedType["@id"]}').btn.btn-danger(type='button') Book
-
-
+									a(href='/hotels/hotelbooking/#{hotelAvail.HotelRoomAvailabilityResponse.hotelId}/#{item.supplierType}/#{item.RateInfos.RateInfo.RoomGroup.Room.rateKey}/#{item.roomTypeCode}/#{item.rateCode}/#{item.RateInfos.RateInfo.ChargeableRateInfo["@total"]}/#{item.BedTypes.BedType["@id"]}').btn.btn-danger(type='button') Book Now
+						
+						.disclaimer 
+							|The room rates listed are for double occupancy per room unless otherwise  stated and exclude tax recovery charges and service fees.		
+				.photodisclaimer.text-center 
+					B Disclaimer:
+					span #{disclaimer}
 
 							

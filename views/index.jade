@@ -4,6 +4,8 @@ block content
 	.navbar-fixed-bottom
 		.navbar-right.cancelbuttonalign
 			a(href='/hotels/cancelbooking').btn.btn-danger.navbar-btn(type='button') Cancel Booking
+		.navbar-left.mybooking-btn
+			a(href='https://travelnow.com/selfService/searchform?cid=55505&lang=en').btn.btn-info(type='button') My Booking
 	.row
 		.col-md-8.col-md-offset-2.searchForm  
 			form(action='/hotels/search' method='post')
@@ -103,7 +105,7 @@ block content
 									&nbsp;
 									span.small per night
 
-								
+				span.photodisclaimer #{disclaimer}							
 							
 							
 					

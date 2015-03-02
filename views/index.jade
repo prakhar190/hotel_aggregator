@@ -11,7 +11,7 @@ block content
 			form(action='/hotels/search' method='post')
 				.form-group   
 					label Where
-					input#autocomplete(type='text' name='location' class='form-control' placeholder='Enter destination' data-validation='custom' data-validation-regexp='^([a-zA-Z" ",-()]+)$' data-validation-error-msg='You entered invalid place')
+					input#searchTextField(type='text' name='location' class='form-control' placeholder='Enter destination' data-validation='custom' data-validation-regexp='^([a-zA-Z" ",-]+)$' data-validation-error-msg='You entered invalid place' autocomplete='on')
 				.row
 					.col-md-6
 						.form-group

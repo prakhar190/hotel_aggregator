@@ -299,5 +299,9 @@ h2.error-message{
   font-family: "Times New Roman", Georgia, Serif;
   color:red;
   font-weight: bold;
+}
+
+.roomnumberalign{
+  margin-top:25px;
 
 }

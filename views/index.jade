@@ -23,34 +23,563 @@ block content
 							label Check-out
 							input(type='text' name='checkoutdate' id='input_checkoutdate' class='form-control' data-value="dd/mm/yyyy" )
 				.row
-					.col-md-4
+					.col-md-2
 						.form-group
 							label Rooms
-							select(name='numberofrooms' class='dropdown' class='form-control')
+							select(name='numberofrooms' class='dropdown' class='form-control' id='selectrooms')
 								option(value='1') 1
-									option(value='2') 2
-									option(value='3') 3
-									option(value='4') 4
-									option(value='5') 5
-									option(value='6') 6
-					.col-md-4
+									option(value='2' id='room2') 2
+									option(value='3' id='room3') 3
+									option(value='4' id='room4') 4
+									option(value='5' id='room5') 5
+									option(value='6' id='room6') 6
+					.col-md-1.col-md-offset-1
+						.roomnumberalign
+							|Room1
+					.col-md-2
 						.form-group
 							label Adults &nbsp;
-								span 12+ yrs
+								span 18+ yrs
 							select(name='numberofadults' class='form-control')
 								option(value='1') 1
 									option(value='2') 2
 									option(value='3') 3
 									option(value='4') 4
-					.col-md-4
+					.col-md-2
 						.form-group
 							label Child &nbsp;
-								span 0-11 yrs
-							select(name='numberofchild' class='form-control')
+								span 0-17 yrs
+							select(name='numberofchild' class='form-control' id='selectchildroom1')
 								option(value='0') 0
 									option(value='1') 1
 									option(value='2') 2
 									option(value='3') 3
+					.col-md-1#childage1room1
+						.form-group
+							label Age
+							select(name='ageofchild1room1')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+
+					.col-md-1#childage2room1
+						.form-group
+							label Age
+							select(name='ageofchild2room1')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+
+
+					.col-md-1#childage3room1
+						.form-group
+							label Age
+							select(name='ageofchild3room1')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+
+
+
+				.row#roomtwo
+					.col-md-1.col-md-offset-3
+						.roomnumberalign
+							|Room2
+					.col-md-2
+						label Adults &nbsp;
+								span 18+ yrs
+							select(name='numberofadultsroom2' class='form-control')
+								option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+					.col-md-2
+						.form-group
+							label Child &nbsp;
+								span 0-17 yrs
+							select(name='numberofchildroom2' class='form-control' id='selectchildroom2')
+								option(value='0') 0
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+					.col-md-1#childage1room2
+						.form-group
+							label Age
+							select(name='ageofchild1room2')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+					.col-md-1#childage2room2
+						.form-group
+							label Age
+							select(name='ageofchild2room2')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+					.col-md-1#childage3room2
+						.form-group
+							label Age
+							select(name='ageofchild3room2')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+				.row#roomthree
+					.col-md-1.col-md-offset-3
+						.roomnumberalign
+							|Room3
+					.col-md-2
+						label Adults &nbsp;
+								span 18+ yrs
+							select(name='numberofadultsroom3' class='form-control')
+								option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+					.col-md-2
+						.form-group
+							label Child &nbsp;
+								span 0-17 yrs
+							select(name='numberofchildroom3' class='form-control' id='selectchildroom3')
+								option(value='0') 0
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+					.col-md-1#childage1room3
+						.form-group
+							label Age
+							select(name='ageofchild1room3')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+					.col-md-1#childage2room3
+						.form-group
+							label Age
+							select(name='ageofchild2room3')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+					.col-md-1#childage3room3
+						.form-group
+							label Age
+							select(name='ageofchild3room3')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+				.row#roomfour
+					.col-md-1.col-md-offset-3
+						.roomnumberalign
+							|Room4
+					.col-md-2
+						label Adults &nbsp;
+								span 18+ yrs
+							select(name='numberofadultsroom4' class='form-control')
+								option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+					.col-md-2
+						.form-group
+							label Child &nbsp;
+								span 0-17 yrs
+							select(name='numberofchildroom4' class='form-control' id='selectchildroom4')
+								option(value='0') 0
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+					.col-md-1#childage1room4
+						.form-group
+							label Age
+							select(name='ageofchild1room4')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+					.col-md-1#childage2room4
+						.form-group
+							label Age
+							select(name='ageofchild2room4')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+					.col-md-1#childage3room4
+						.form-group
+							label Age
+							select(name='ageofchild3room4')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+				.row#roomfive
+					.col-md-1.col-md-offset-3
+						.roomnumberalign
+							|Room5
+					.col-md-2
+						label Adults &nbsp;
+								span 18+ yrs
+							select(name='numberofadultsroom5' class='form-control')
+								option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+					.col-md-2
+						.form-group
+							label Child &nbsp;
+								span 0-17 yrs
+							select(name='numberofchildroom5' class='form-control' id='selectchildroom5')
+								option(value='0') 0
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+					.col-md-1#childage1room5
+						.form-group
+							label Age
+							select(name='ageofchild1room5')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+					.col-md-1#childage2room5
+						.form-group
+							label Age
+							select(name='ageofchild2room5')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+					.col-md-1#childage3room5
+						.form-group
+							label Age
+							select(name='ageofchild3room5')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+				.row#roomsix
+					.col-md-1.col-md-offset-3
+						.roomnumberalign
+							|Room6
+					.col-md-2
+						label Adults &nbsp;
+								span 18+ yrs
+							select(name='numberofadultsroom6' class='form-control')
+								option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+					.col-md-2
+						.form-group
+							label Child &nbsp;
+								span 0-17 yrs
+							select(name='numberofchildroom6' class='form-control' id='selectchildroom6')
+								option(value='0') 0
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+					.col-md-1#childage1room6
+						.form-group
+							label Age
+							select(name='ageofchild1room6')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+					.col-md-1#childage2room6
+						.form-group
+							label Age
+							select(name='ageofchild2room6')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+					.col-md-1#childage3room6
+						.form-group
+							label Age
+							select(name='ageofchild3room6')
+								option(value='0') -?-
+									option(value='1') <1
+									option(value='1') 1
+									option(value='2') 2
+									option(value='3') 3
+									option(value='4') 4
+									option(value='5') 5
+									option(value='6') 6
+									option(value='7') 7
+									option(value='8') 8
+									option(value='9') 9
+									option(value='10') 10
+									option(value='11') 11
+									option(value='12') 12
+									option(value='13') 13
+									option(value='14') 14
+									option(value='15') 15
+									option(value='16') 16
+									option(value='17') 17
+
 				
 
 				input(type='submit' value='Search hotels' class='btn btn-danger btn-search-hotel')

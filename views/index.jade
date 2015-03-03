@@ -74,7 +74,7 @@ block content
 									if item.thumbNailUrl
 										img.hotelimage(src='http://media2.expedia.com'+goodqualitythumbnail+'_l.jpg')
 									else
-										img(src='/images/no-image.png' alt='No Image')
+										img.hotelimage(src='/images/no-image.png' alt='No Image')
 								.col-md-6
 									
 									-var hotelname=JSON.stringify(item.name)

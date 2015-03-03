@@ -6,7 +6,7 @@ module.exports={
 	"cid":"55505",
 	"minorRev":"28",
 	"currencyCode":"INR",
-	"countryCode":"IND",
+	"countryCode":"",
 	"customerSessionId" : "thisisauniqueID",
   	"customerIpAddress" : "127.0.0.1",
   	"customerUserAgent" : "Chrome"

@@ -7,7 +7,7 @@ module.exports={
 	"minorRev":"28",
 	"currencyCode":"INR",
 	"countryCode":"",
-	"customerSessionId" : "thisisauniqueID",
+	"customerSessionId" : "U",
   	"customerIpAddress" : "127.0.0.1",
   	"customerUserAgent" : "Chrome"
 }

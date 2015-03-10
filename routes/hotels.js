@@ -15,34 +15,38 @@ var disclaimer='It is the responsibility of the hotel chain and/or the individua
 
 
 // To get the List of Hotels
-router.post('/search', function(req, res) {
+router.post('/search', function (req, res) {
 		var options = {
   						"customerSessionId" : config.customerSessionId,
-  						"customerIpAddress" : config.customerIpAddress,
-  						"customerUserAgent" : config.customerUserAgent,
-  						"HotelListRequest": {
-  											"city": req.param('location'),
-    										"stateProvinceCode": "IND",
-											"countryCode": config.countryCode,
-    										"arrivalDate": req.param('checkindate'),
-    										"departureDate":req.param('checkoutdate'),
-    										"RoomGroup":{
-     													 "Room": { "numberOfAdults": req.param('numberofadults') }
-     													}
-     										}
+  						"customerIpAddress" : req.header('x-forwarded-for') || req.connection.remoteAddress,
+  						"customerUserAgent" : req.headers['user-agent'],
+  						"locale":"en_US",
+                        "currencyCode":"INR",
+                        "city": req.param('location'),
+    					"stateProvinceCode": "IND",
+						"countryCode": config.countryCode,
+    					"arrivalDate": req.param('checkindate'),
+    					"departureDate":req.param('checkoutdate'),
+    					"room1":2,
+                        "room2":1					
 						}//end of options	
 
-		healthstatus(function(health){
+		healthstatus(function (health){
 			if(health=='True')
 			{
-                
-				expedia.hotels.list(options, function(err, hotel_search_response){
-    				if(err)throw new Error(err);
+               request({
+                        url:'http://dev.api.ean.com/ean-services/rs/hotel/v3/list?minorRev=28&cid=55505&apiKey=7pb5axaj6nm9yrk3f2ujajf5&customerUserAgent=&customerIpAddress=&customerSessionId=&locale=en_US&currencyCode=INR&city=Lucknow&stateProvinceCode=&countryCode=INDIA&arrivalDate=12/03/2015&departureDate=12/04/2015&room1=2',
+                        method:'POST'
+                        
+                    }, function (error, response, hotel_search_response){
+    				    if(error)throw new Error(error);
+                        console.log(hotel_search_response)
 						
 
 						
 						if(hotel_search_response.HotelListResponse.HotelList)
-						{
+						{    
+                            //console.log(hotel_search_response);
 							var star= new Array();
 							//console.log(hotel_search_response.HotelListResponse.HotelList.HotelSummary.length);
 							//For saving The star value of hotel in the array star  
@@ -54,7 +58,7 @@ router.post('/search', function(req, res) {
 
 								}
 							//console.log(star);
-							//console.log(req);
+							console.log(hotel_search_response);
 							req.session['checkindate']=req.param('checkindate');
 					
 
@@ -68,7 +72,8 @@ router.post('/search', function(req, res) {
 							console.log("No Data Received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".red.bold.underline);
 							res.redirect('/');
 						}
-				});	//end of expedia.hotels.list	
+				}	//end of function
+                ); //end of request	
 
 						
     		}//end of if
@@ -84,7 +89,7 @@ router.post('/search', function(req, res) {
 });// end of post search
 
 // For Displaying Hotel Information
-router.get('/hotelinfo/:hotelId', function(req, res){
+router.get('/hotelinfo/:hotelId', function (req, res){
 		
 		//var checkout;
 		//var checkin;
@@ -107,9 +112,7 @@ router.get('/hotelinfo/:hotelId', function(req, res){
     															"departureDate": req.session['checkoutdate'],
     															"includeDetails": "true",
     															"includeRoomImages":"true",
-    															"RoomGroup": {
-      																			"Room": { "numberOfAdults": "2"}
-    																		}
+    															
   															}
 							}// end of available options
 		var roomimageoptions = {
@@ -120,24 +123,24 @@ router.get('/hotelinfo/:hotelId', function(req, res){
     												"hotelId": req.param('hotelId'),
   												}
 					};
-		healthstatus(function(health){
+		healthstatus(function (health){
 			if(health=='True')
 			{
-				expedia.hotels.info(options, function(err, hotel_information_response){
+				expedia.hotels.info(options, function (err, hotel_information_response){
     				if(err)throw new Error(err);
     				//console.log(hotel_information_response);
     				var star=hotel_information_response.HotelInformationResponse.HotelSummary.hotelRating;
     				console.log("Success>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".green.bold.underline);
     				console.log(req.param('hotelId'));
-    				expedia.hotels.availability(availableoptions, function(err, hotel_available_response){
+    				expedia.hotels.availability(availableoptions, function (err, hotel_available_response){
     					if(err)throw new Error(err);
     					//checkin=req.session['checkindate'];
     					//checkout=req.session['checkoutdate'];
 						var checkout=req.session.checkoutdate;
-    					//console.log(hotel_available_response);
+    					console.log(hotel_available_response);
     					//console.log(checkin);
     					//console.log(checkout);
-    					expedia.hotels.roomImages(roomimageoptions, function(err, hotel_roomimage_response){
+    					expedia.hotels.roomImages(roomimageoptions, function (err, hotel_roomimage_response){
     						if(err)throw new Error(err);
     						//console.log(JSON.stringify(hotel_available_response.HotelRoomAvailabilityResponse));
 

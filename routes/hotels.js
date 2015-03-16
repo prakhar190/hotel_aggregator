@@ -16,6 +16,120 @@ var disclaimer='It is the responsibility of the hotel chain and/or the individua
 
 // To get the List of Hotels
 router.post('/search', function (req, res) {
+    var room1
+    var room2
+    var room3
+    var room4
+    var room5
+    var room6
+// Setting the variables for 1 child
+    if(req.param('numberofchild')==0)
+        {
+            room1=req.param('numberofadults')
+        }
+    if(req.param('numberofchildroom2')==0)
+        {
+            room2=req.param('numberofadultsroom2')
+        }
+    if(req.param('numberofchildroom3')==0)
+        {
+            room3=req.param('numberofadultsroom3')
+        }
+    if(req.param('numberofchildroom4')==0)
+        {
+            room4=req.param('numberofadultsroom4')
+        }
+    if(req.param('numberofchildroom5')==0)
+        {
+            room5=req.param('numberofadultsroom5')
+        }
+    if(req.param('numberofchildroom6')==0)
+        {
+            room6=req.param('numberofadultsroom6')
+        }
+
+
+// Setting the variables for 1 child
+    if(req.param('numberofchild')==1)
+        {
+            room1=req.param('numberofadults')+","+req.param('ageofchild1room1')
+        }
+    if(req.param('numberofchildroom2')==1)
+        {
+            room2=req.param('numberofadultsroom2')+","+req.param('ageofchild1room2')
+        }
+    if(req.param('numberofchildroom3')==1)
+        {
+            room3=req.param('numberofadultsroom3')+","+req.param('ageofchild1room3')
+        }
+     if(req.param('numberofchildroom4')==1)
+        {
+            room4=req.param('numberofadultsroom4')+","+req.param('ageofchild1room4')
+        }
+    if(req.param('numberofchildroom5')==1)
+        {
+            room5=req.param('numberofadultsroom5')+","+req.param('ageofchild1room5')
+        }
+    if(req.param('numberofchildroom6')==1)
+        {
+            room6=req.param('numberofadultsroom6')+","+req.param('ageofchild1room6')
+        }
+
+
+
+// Setting the variables for 2 child
+    if(req.param('numberofchild')==2)
+        {
+            room1=req.param('numberofadults')+","+req.param('ageofchild1room1')+","+req.param('ageofchild2room1')
+        }
+    if(req.param('numberofchildroom2')==2)
+        {
+            room2=req.param('numberofadultsroom2')+","+req.param('ageofchild1room2')+","+req.param('ageofchild2room2')
+        }
+    if(req.param('numberofchildroom3')==2)
+        {
+            room3=req.param('numberofadultsroom3')+","+req.param('ageofchild1room3')+","+req.param('ageofchild2room3')
+        }
+    if(req.param('numberofchildroom4')==2)
+        {
+            room4=req.param('numberofadultsroom4')+","+req.param('ageofchild1room4')+","+req.param('ageofchild2room4')
+        }
+    if(req.param('numberofchildroom5')==2)
+        {
+            room5=req.param('numberofadultsroom5')+","+req.param('ageofchild1room5')+","+req.param('ageofchild2room5')
+        }
+    if(req.param('numberofchildroom6')==2)
+        {
+            room6=req.param('numberofadultsroom6')+","+req.param('ageofchild1room6')+","+req.param('ageofchild2room6')
+        }
+
+
+// Setting the variables for 3 child
+    if(req.param('numberofchild')==3)
+        {
+            room1=req.param('numberofadults')+","+req.param('ageofchild1room1')+","+req.param('ageofchild2room1')+","+req.param('ageofchild3room1')
+        }
+    if(req.param('numberofchildroom2')==3)
+        {
+            room2=req.param('numberofadultsroom2')+","+req.param('ageofchild1room2')+","+req.param('ageofchild2room2')+","+req.param('ageofchild3room2')
+        }
+    if(req.param('numberofchildroom3')==3)
+        {
+            room3=req.param('numberofadultsroom3')+","+req.param('ageofchild1room3')+","+req.param('ageofchild2room3')+","+req.param('ageofchild3room3')
+        }
+    if(req.param('numberofchildroom4')==3)
+        {
+            room4=req.param('numberofadultsroom4')+","+req.param('ageofchild1room4')+","+req.param('ageofchild2room4')+","+req.param('ageofchild3room4')
+        }
+    if(req.param('numberofchildroom5')==3)
+        {
+            room5=req.param('numberofadultsroom5')+","+req.param('ageofchild1room5')+","+req.param('ageofchild2room5')+","+req.param('ageofchild3room2')
+        }
+    if(req.param('numberofchildroom6')==3)
+        {
+            room6=req.param('numberofadultsroom6')+","+req.param('ageofchild1room6')+","+req.param('ageofchild2room6')+","+req.param('ageofchild3room2')
+        }
+
 		var options = {
   						"customerSessionId" : config.customerSessionId,
   						"customerIpAddress" : req.header('x-forwarded-for') || req.connection.remoteAddress,
@@ -27,45 +141,80 @@ router.post('/search', function (req, res) {
 						"countryCode": config.countryCode,
     					"arrivalDate": req.param('checkindate'),
     					"departureDate":req.param('checkoutdate'),
-    					"room1":2,
-                        "room2":1					
-						}//end of options	
+    					"child1room1":req.param('ageofchild1room1'),
+                        "child2room1":req.param('ageofchild2room1'),
+                        "child3room1":req.param('ageofchild3room1'),
+                        "child1room2":req.param('ageofchild1room2'),
+                        "child2room2":req.param('ageofchild2room2'),
+                        "child3room2":req.param('ageofchild3room2'),
+                        "child1room3":req.param('ageofchild1room3'),
+                        "child2room3":req.param('ageofchild2room3'),
+                        "child3room3":req.param('ageofchild3room3'),
+                        "child1room4":req.param('ageofchild1room4'),
+                        "child2room4":req.param('ageofchild2room4'),
+                        "child3room4":req.param('ageofchild3room4'),
+                        "child1room5":req.param('ageofchild1room5'),
+                        "child2room5":req.param('ageofchild2room5'),
+                        "child3room5":req.param('ageofchild3room5'),
+                        "child1room6":req.param('ageofchild1room6'),
+                        "child2room6":req.param('ageofchild2room6'),
+                        "child3room6":req.param('ageofchild3room6')
+                    }//end of options	
 
 		healthstatus(function (health){
 			if(health=='True')
 			{
                request({
-                        url:'http://dev.api.ean.com/ean-services/rs/hotel/v3/list?minorRev=28&cid=55505&apiKey=7pb5axaj6nm9yrk3f2ujajf5&customerUserAgent=&customerIpAddress=&customerSessionId=&locale=en_US&currencyCode=INR&city=Lucknow&stateProvinceCode=&countryCode=INDIA&arrivalDate=12/03/2015&departureDate=12/04/2015&room1=2',
+                        url:"http://dev.api.ean.com/ean-services/rs/hotel/v3/list?minorRev=28&cid=55505&apiKey=7pb5axaj6nm9yrk3f2ujajf5&customerUserAgent="
+                        +options.customerUserAgent+"&customerIpAddress="
+                        +options.customerIpAddress+"&customerSessionId="
+                        +options.customerSessionId+"&locale=en_US&currencyCode=INR&city="
+                        +options.city+"&stateProvinceCode=&countryCode=&arrivalDate="
+                        +options.arrivalDate+"&departureDate="
+                        +options.departureDate
+                        +"&room1="+room1//+","+options.child1room1+","+options.child2room1+","+options.child3room1
+                        +"&room2="+room2//+","+options.child1room2+","+options.child2room2+","+options.child3room2
+                        +"&room3="+room3//+","+options.child1room3+","+options.child2room3+","+options.child3room3
+                        +"&room4="+room4//+","+options.child1room4+","+options.child2room4+","+options.child3room4
+                        +"&room5="+room5//+","+options.child1room5+","+options.child2room5+","+options.child3room5
+                        +"&room6="+room6,//+","+options.child1room6+","+options.child2room6+","+options.child3room6,
                         method:'POST'
                         
                     }, function (error, response, hotel_search_response){
     				    if(error)throw new Error(error);
-                        console.log(hotel_search_response)
+                        var hotellist=JSON.parse(hotel_search_response)
+                        console.log(hotellist);
+                        console.log(room1);
+                        console.log(room2);
+                        console.log(room3);
+                        console.log(room4);
+                        console.log(room5);
+                        console.log(room6);
 						
 
 						
-						if(hotel_search_response.HotelListResponse.HotelList)
+						if(hotellist.HotelListResponse.HotelList)
 						{    
                             //console.log(hotel_search_response);
 							var star= new Array();
 							//console.log(hotel_search_response.HotelListResponse.HotelList.HotelSummary.length);
 							//For saving The star value of hotel in the array star  
-							for(i=0;i<hotel_search_response.HotelListResponse.HotelList.HotelSummary.length;i++) 
+							for(i=0;i<hotellist.HotelListResponse.HotelList.HotelSummary.length;i++) 
 								{ 
-									var s=hotel_search_response.HotelListResponse.HotelList.HotelSummary[i].hotelRating 
+									var s=hotellist.HotelListResponse.HotelList.HotelSummary[i].hotelRating 
 						 
 									star[i]=parseInt(s); 
 
 								}
 							//console.log(star);
-							console.log(hotel_search_response);
+							//console.log(hotel_search_response);
 							req.session['checkindate']=req.param('checkindate');
 					
 
 							req.session['checkoutdate']=req.param('checkoutdate');
 						 
 							console.log("Success>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".green.bold.underline);
-							res.render('index',{title:'Hotel Search',hotels:hotel_search_response,star:star,user:req.user,disclaimer:disclaimer});
+							res.render('index',{title:'Hotel Search',hotels:hotellist,star:star,user:req.user,disclaimer:disclaimer});
 						} 
 						else
 						{

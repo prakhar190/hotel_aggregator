@@ -45,23 +45,34 @@ $(document).ready(function(){
 	$('#childage1room6').hide();
 	$('#childage2room6').hide();
 	$('#childage3room6').hide();
+	
 
 	$('#selectrooms').change(function(){
 		if($('#selectrooms').val()==1)
-			{
+			{   $('#numberofadultsroom2').val(null);
+				$('#numberofadultsroom3').val(null);
+				$('#numberofadultsroom4').val(null);
+				$('#numberofadultsroom5').val(null);
+				$('#numberofadultsroom6').val(null);
 				$('#roomtwo').hide();
 				$('#roomthree').hide();
 				$('#roomfour').hide();
 				$('#roomfive').hide();
 				$('#roomsix').hide();
+				
 			}
 		if($('#selectrooms').val()==2)
-			{
+			{   $('#numberofadultsroom3').val(null)
+				$('#numberofadultsroom4').val(null)
+				$('#numberofadultsroom5').val(null)
+				$('#numberofadultsroom6').val(null)
 				$('#roomtwo').show();
 				$('#roomthree').hide();
 				$('#roomfour').hide();
 				$('#roomfive').hide();
 				$('#roomsix').hide();
+				$('#numberofadultsroom2').val(1)
+				
 			}
 		
 		if($('#selectrooms').val()==3)
@@ -71,6 +82,11 @@ $(document).ready(function(){
 				$('#roomfour').hide();
 				$('#roomfive').hide();
 				$('#roomsix').hide();
+				$('#numberofadultsroom2').val(1)
+				$('#numberofadultsroom3').val(1)
+				$('#numberofadultsroom4').val(null)
+				$('#numberofadultsroom5').val(null)
+				$('#numberofadultsroom6').val(null)
 			}
 		
 		if($('#selectrooms').val()==4)
@@ -80,6 +96,11 @@ $(document).ready(function(){
 				$('#roomfour').show();
 				$('#roomfive').hide();
 				$('#roomsix').hide();
+				$('#numberofadultsroom2').val(1)
+				$('#numberofadultsroom3').val(1)
+				$('#numberofadultsroom4').val(1)
+				$('#numberofadultsroom5').val(null)
+				$('#numberofadultsroom6').val(null)
 			}
 		if($('#selectrooms').val()==5)
 			{
@@ -88,6 +109,11 @@ $(document).ready(function(){
 				$('#roomfour').show();
 				$('#roomfive').show();
 				$('#roomsix').hide();
+				$('#numberofadultsroom2').val(1)
+				$('#numberofadultsroom3').val(1)
+				$('#numberofadultsroom4').val(1)
+				$('#numberofadultsroom5').val(1)
+				$('#numberofadultsroom6').val(null)
 			}
 		if($('#selectrooms').val()==6)
 			{
@@ -96,7 +122,13 @@ $(document).ready(function(){
 				$('#roomfour').show();
 				$('#roomfive').show();
 				$('#roomsix').show();
+				$('#numberofadultsroom2').val(1)
+				$('#numberofadultsroom3').val(1)
+				$('#numberofadultsroom4').val(1)
+				$('#numberofadultsroom5').val(1)
+				$('#numberofadultsroom6').val(1)
 			}
+
 	});
  	$('#selectchildroom1').change(function(){
  		if($('#selectchildroom1').val()==1)

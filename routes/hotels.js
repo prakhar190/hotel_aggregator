@@ -22,7 +22,7 @@ router.post('/search', function (req, res) {
     var room4
     var room5
     var room6
-// Setting the variables for 1 child
+// Setting the variables for 0 child
     if(req.param('numberofchild')==0)
         {
             room1=req.param('numberofadults')
@@ -140,25 +140,8 @@ router.post('/search', function (req, res) {
     					"stateProvinceCode": "IND",
 						"countryCode": config.countryCode,
     					"arrivalDate": req.param('checkindate'),
-    					"departureDate":req.param('checkoutdate'),
-    					"child1room1":req.param('ageofchild1room1'),
-                        "child2room1":req.param('ageofchild2room1'),
-                        "child3room1":req.param('ageofchild3room1'),
-                        "child1room2":req.param('ageofchild1room2'),
-                        "child2room2":req.param('ageofchild2room2'),
-                        "child3room2":req.param('ageofchild3room2'),
-                        "child1room3":req.param('ageofchild1room3'),
-                        "child2room3":req.param('ageofchild2room3'),
-                        "child3room3":req.param('ageofchild3room3'),
-                        "child1room4":req.param('ageofchild1room4'),
-                        "child2room4":req.param('ageofchild2room4'),
-                        "child3room4":req.param('ageofchild3room4'),
-                        "child1room5":req.param('ageofchild1room5'),
-                        "child2room5":req.param('ageofchild2room5'),
-                        "child3room5":req.param('ageofchild3room5'),
-                        "child1room6":req.param('ageofchild1room6'),
-                        "child2room6":req.param('ageofchild2room6'),
-                        "child3room6":req.param('ageofchild3room6')
+    					"departureDate":req.param('checkoutdate')
+    					
                     }//end of options	
 
 		healthstatus(function (health){
@@ -183,6 +166,7 @@ router.post('/search', function (req, res) {
                     }, function (error, response, hotel_search_response){
     				    if(error)throw new Error(error);
                         var hotellist=JSON.parse(hotel_search_response)
+                        var sessionid=hotellist.HotelListResponse.customerSessionId;
                         console.log(hotellist);
                         console.log(room1);
                         console.log(room2);
@@ -190,7 +174,7 @@ router.post('/search', function (req, res) {
                         console.log(room4);
                         console.log(room5);
                         console.log(room6);
-						
+						console.log(sessionid);
 
 						
 						if(hotellist.HotelListResponse.HotelList)
@@ -208,11 +192,18 @@ router.post('/search', function (req, res) {
 								}
 							//console.log(star);
 							//console.log(hotel_search_response);
-							req.session['checkindate']=req.param('checkindate');
-					
-
-							req.session['checkoutdate']=req.param('checkoutdate');
-						 
+							
+                        // Binding values to the request object to maintain the session    
+                            req.session['checkindate']=req.param('checkindate');
+				            req.session['checkoutdate']=req.param('checkoutdate');
+                            req.session['roomone']=room1;
+                            req.session['roomtwo']=room2;
+                            req.session['roomthree']=room3;
+                            req.session['roomfour']=room4;
+                            req.session['roomfive']=room5;
+                            req.session['roomsix']=room6;
+                            req.session['sessionId']=sessionid;
+						    
 							console.log("Success>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".green.bold.underline);
 							res.render('index',{title:'Hotel Search',hotels:hotellist,star:star,user:req.user,disclaimer:disclaimer});
 						} 
@@ -243,31 +234,36 @@ router.get('/hotelinfo/:hotelId', function (req, res){
 		//var checkout;
 		//var checkin;
 		var options = {
-  						"customerSessionId" : config.customerSessionId,
-						"customerIpAddress" : config.customerIpAddress,
-  						"customerUserAgent" : config.customerUserAgent,
+  						"customerSessionId" : req.session['sessionId'],
+                        "customerIpAddress" : req.header('x-forwarded-for') || req.connection.remoteAddress,
+                        "customerUserAgent" : req.headers['user-agent'],
   						"HotelInformationRequest": {
     												"hotelId": req.param('hotelId'),
     												"options": "0"
   												}
 				}// end of options
 		var availableoptions = {
-								"customerSessionId" : config.customerSessionId,
-  								"customerIpAddress" : config.customerIpAddress,
-  								"customerUserAgent" : config.customerUserAgent,
-  								"HotelRoomAvailabilityRequest": {
-    															"hotelId": req.param('hotelId'),
-    															"arrivalDate": req.session['checkindate'],
-    															"departureDate": req.session['checkoutdate'],
-    															"includeDetails": "true",
-    															"includeRoomImages":"true",
+								"customerSessionId" : req.session['sessionId'],
+                                "customerIpAddress" : req.header('x-forwarded-for') || req.connection.remoteAddress,
+                                "customerUserAgent" : req.headers['user-agent'],
+  								"hotelId": req.param('hotelId'),
+								"arrivalDate": req.session['checkindate'],
+								"departureDate": req.session['checkoutdate'],
+								"includeDetails": "true",
+								"includeRoomImages":"true",
+                                "room1":req.session['roomone'],
+                                "room2":req.session['roomtwo'],
+                                "room3":req.session['roomthree'],
+                                "room4":req.session['roomfour'],
+                                "room5":req.session['roomfive'],
+                                "room6":req.session['roomsix']
     															
-  															}
+  															
 							}// end of available options
 		var roomimageoptions = {
-  						"customerSessionId" : config.customerSessionId,
-  						"customerIpAddress" : config.customerIpAddress,
-  						"customerUserAgent" : config.customerUserAgent,
+  						"customerSessionId" : req.session['sessionId'],
+                        "customerIpAddress" : req.header('x-forwarded-for') || req.connection.remoteAddress,
+                        "customerUserAgent" : req.headers['user-agent'],
   						"HotelRoomImagesRequest": {
     												"hotelId": req.param('hotelId'),
   												}
@@ -281,29 +277,47 @@ router.get('/hotelinfo/:hotelId', function (req, res){
     				var star=hotel_information_response.HotelInformationResponse.HotelSummary.hotelRating;
     				console.log("Success>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".green.bold.underline);
     				console.log(req.param('hotelId'));
-    				expedia.hotels.availability(availableoptions, function (err, hotel_available_response){
-    					if(err)throw new Error(err);
+    				request({
+                            url:"http://dev.api.ean.com/ean-services/rs/hotel/v3/avail?minorRev=28&cid=55505&apiKey=7pb5axaj6nm9yrk3f2ujajf5&customerUserAgent="
+                                +availableoptions.customerUserAgent+"&customerIpAddress="
+                                +availableoptions.customerIpAddress+"&customerSessionId="
+                                +availableoptions.customerSessionId+"&locale=en_US&currencyCode=INR&hotelId="
+                                +availableoptions.hotelId+"&arrivalDate="
+                                +availableoptions.arrivalDate+"&departureDate="
+                                +availableoptions.departureDate+"&includeDetails="
+                                +availableoptions.includeDetails+"&includeRoomImages="
+                                +availableoptions.includeRoomImages+
+                                "&room1="+availableoptions.room1+
+                                "&room2="+availableoptions.room2+
+                                "&room3="+availableoptions.room3+
+                                "&room4="+availableoptions.room4+
+                                "&room5="+availableoptions.room5+
+                                "&room6="+availableoptions.room6,
+                            method:'GET',
+                            Json: true
+                        }, function (error, response , hotel_available_response){
+    					if(error)throw new Error(error);
+                        var hotelavail=JSON.parse(hotel_available_response)
     					//checkin=req.session['checkindate'];
     					//checkout=req.session['checkoutdate'];
 						var checkout=req.session.checkoutdate;
-    					console.log(hotel_available_response);
     					//console.log(checkin);
-    					//console.log(checkout);
+    					console.log(hotelavail);
     					expedia.hotels.roomImages(roomimageoptions, function (err, hotel_roomimage_response){
     						if(err)throw new Error(err);
     						//console.log(JSON.stringify(hotel_available_response.HotelRoomAvailabilityResponse));
 
-					       if(hotel_available_response.HotelRoomAvailabilityResponse.EanWsError)
+					       if(hotelavail.HotelRoomAvailabilityResponse.EanWsError)
                             {
-                                var presentationMessage=hotel_available_response.HotelRoomAvailabilityResponse.EanWsError.ErrorAttributes.presentationMessage
+                                var presentationMessage=hotelavail.HotelRoomAvailabilityResponse.EanWsError.ErrorAttributes.presentationMessage
                                 res.render('bookingerror',{title:'Error',message:presentationMessage,user:req.user});
                             }
                            else
                             {
-    					       res.render('hotelinfo',{title:'Hotel Information',hotelInfo:hotel_information_response,hotelAvail:hotel_available_response,user:req.user,star:star,disclaimer:disclaimer});
+    					       res.render('hotelinfo',{title:'Hotel Information',hotelInfo:hotel_information_response,hotelAvail:hotelavail,user:req.user,star:star,disclaimer:disclaimer});
                             }
     					});// end of expedia.hotels.roomImages
-    				});//end of expedia.hotels.availability
+    				});//end of hotel room availability request
 				});//end of expedia.hotels.info
 
 				
@@ -330,6 +344,9 @@ router.get('/hotelbooking/:hotelId/:supplierType/:rateKey/:roomTypeCode/:rateCod
 router.post('/book', function(req,res){
 	var split=req.param('cardholdername').split(' ');
 	var options={ 
+                    "customerSessionId" : req.session['sessionId'],
+                    "customerIpAddress" : req.header('x-forwarded-for') || req.connection.remoteAddress,
+                    "customerUserAgent" : req.headers['user-agent'],
 					'hotelId':req.param('hotelId'),
 					'arrivalDate':req.session['checkindate'],
 					'departureDate':req.session['checkoutdate'],
@@ -361,7 +378,10 @@ router.post('/book', function(req,res){
 					
 				}
 	request({
-    			url:"https://book.api.ean.com/ean-services/rs/hotel/v3/res?apiKey=7pb5axaj6nm9yrk3f2ujajf5&cid=55505&customerIpAddress=&customerUserAgent=&customerSessionId=&minorRev=28&locale=en_US&currencyCode=INR&hotelId="+
+    			url:"https://book.api.ean.com/ean-services/rs/hotel/v3/res?apiKey=7pb5axaj6nm9yrk3f2ujajf5&cid=55505&customerIpAddress="
+                    +options.customerIpAddress+"&customerUserAgent="
+                    +options.customerUserAgent+"&customerSessionId="
+                    +options.customerSessionId+"&minorRev=28&locale=en_US&currencyCode=INR&hotelId="+
     				options.hotelId+					"&arrivalDate="+
     				options.arrivalDate+				"&departureDate="+
     				options.departureDate+				"&supplierType="+
@@ -436,8 +456,8 @@ router.get('/cancelbooking', function(req, res){
 router.post('/cancelbooking', function(req,res){
     var options = {
                     "customerSessionId" : config.customerSessionId,
-                    "customerIpAddress" : config.customerIpAddress,
-                    "customerUserAgent" : config.customerUserAgent,
+                    "customerIpAddress" : req.header('x-forwarded-for') || req.connection.remoteAddress,
+                    "customerUserAgent" : req.headers['user-agent'],
                     "HotelRoomCancellationRequest":{
                                                     "itineraryId": req.param('itineraryid'),
                                                     "email":req.param('email'),

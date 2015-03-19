@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.10.1",
     "colors": "^1.0.3",
     "connect-flash": "^0.1.1",
@@ -19,6 +20,8 @@
     "morgan": "~1.5.1",
     "passport": "^0.2.1",
     "passport-facebook": "^1.0.3",
+    "passport-local": "^1.0.0",
+    "path": "^0.11.14",
     "request": "^2.53.0",
     "serve-favicon": "~2.2.0",
     "xmlbuilder": "^2.4.6"

@@ -3,9 +3,13 @@ extends layout
 block content
 	form(action='/hotels/book' method='post')
 		.row.commanalign
-			.col-md-8.col-md-offset-2.bookingform 
+			.col-md-8.col-md-offset-2.bookingform
 				
 				h3 Who's Travelling?
+				.row		
+					.col-md-2.room
+						B Room 1
+
 				.row
 					.col-md-6
 						.form-group
@@ -29,6 +33,223 @@ block content
 								input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you' data-validation='length number' data-validation-length='10-10' data-validation-error-msg='Mobile number should be numeric and of 10 digits' value=user.mobile)
 							else
 								input(type='text' name='mobilenumber' class='form-control' placeholder='In case we have to reach you' data-validation='length number' data-validation-length='10-10' data-validation-error-msg='Mobile number should be numeric and of 10 digits')
+				
+		if (rooms==2)
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 2
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom2' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom2' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+		if (rooms==3)
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 2
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom2' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom2' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 3
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom3' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom3' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+		if (rooms==4)
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 2
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom2' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom2' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 3
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom3' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom3' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 4
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom4' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom4' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+		if (rooms==5)
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 2
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom2' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom2' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 3
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom3' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom3' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 4
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom4' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom4' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 5
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom5' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom5' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+		if (rooms==6)
+			.row
+					.col-md-8.col-md-offset-2.bookingform
+						.row		
+							.col-md-2.room
+								B Room 2
+						.row
+							.col-md-6
+								.form-group
+									label First Name
+									input(type='text' name='firstnameroom2' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+							.col-md-6
+								.form-group
+									label Last Name
+									input(type='text' name='lastnameroom2' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 3
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom3' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom3' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 4
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom4' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom4' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 5
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom5' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom5' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+			.row
+				.col-md-8.col-md-offset-2.bookingform
+					.row		
+						.col-md-2.room
+							B Room 6
+					.row
+						.col-md-6
+							.form-group
+								label First Name
+								input(type='text' name='firstnameroom6' class='form-control' placeholder='First Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+						.col-md-6
+							.form-group
+								label Last Name
+								input(type='text' name='lastnameroom6' class='form-control' placeholder='Last Name' data-validation='custom' data-validation-regexp='^([a-zA-Z]+)$' data-validation-error-msg='Invalid name')
+
 
 		.row
 			.col-md-8.col-md-offset-2.bookingform

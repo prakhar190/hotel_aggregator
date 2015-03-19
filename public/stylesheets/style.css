@@ -305,3 +305,9 @@ h2.error-message{
   margin-top:25px;
 
 }
+
+.room{
+  font-size: 20px;
+  font-family: "Times New Roman", Georgia, Serif;
+  color: red;
+}

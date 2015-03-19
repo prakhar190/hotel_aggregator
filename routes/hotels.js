@@ -167,6 +167,7 @@ router.post('/search', function (req, res) {
     				    if(error)throw new Error(error);
                         var hotellist=JSON.parse(hotel_search_response)
                         var sessionid=hotellist.HotelListResponse.customerSessionId;
+                        var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
                         console.log(hotellist);
                         console.log(room1);
                         console.log(room2);
@@ -175,6 +176,7 @@ router.post('/search', function (req, res) {
                         console.log(room5);
                         console.log(room6);
 						console.log(sessionid);
+                        console.log(ip);
 
 						
 						if(hotellist.HotelListResponse.HotelList)
@@ -196,6 +198,7 @@ router.post('/search', function (req, res) {
                         // Binding values to the request object to maintain the session    
                             req.session['checkindate']=req.param('checkindate');
 				            req.session['checkoutdate']=req.param('checkoutdate');
+                            req.session['numberofrooms']=req.param('numberofrooms');
                             req.session['roomone']=room1;
                             req.session['roomtwo']=room2;
                             req.session['roomthree']=room3;
@@ -337,7 +340,7 @@ router.get('/hotelinfo/:hotelId', function (req, res){
 
 // To show Booking Page
 router.get('/hotelbooking/:hotelId/:supplierType/:rateKey/:roomTypeCode/:rateCode/:chargeableRate/:bedTypeId', function(req, res){
-	res.render('booking',{title:'Hotel Reservation',req:req,user:req.user})
+	res.render('booking',{title:'Hotel Reservation',req:req,user:req.user,rooms:req.session['numberofrooms']})
 
 });
 // To book a room in hotel
@@ -355,11 +358,26 @@ router.post('/book', function(req,res){
 					'roomTypeCode':req.param('roomTypeCode'),
 					'rateCode':req.param('rateCode'),
 					'chargeableRate':req.param('chargeableRate'),
-					'room1':'2',
+					'room1':req.session['roomone'],
+                    'room2':req.session['roomtwo'],
+                    'room3':req.session['roomthree'],
+                    'room4':req.session['roomfour'],
+                    'room5':req.session['roomfive'],
+                    'room6':req.session['roomsix'],
 					'room1FirstName':req.param('firstname'),
 					'room1LastName':req.param('lastname'),
 					'room1BedTypeId':req.param('bedTypeId'),
 					'room1SmokingPreference':'NS',
+                    'room2FirstName':req.param('firstnameroom2'),
+                    'room2LastName':req.param('lastnameroom2'),
+                    'room3FirstName':req.param('firstnameroom3'),
+                    'room3LastName':req.param('lastnameroom3'),
+                    'room4FirstName':req.param('firstnameroom4'),
+                    'room4LastName':req.param('lastnameroom4'),
+                    'room5FirstName':req.param('firstnameroom5'),
+                    'room5LastName':req.param('lastnameroom5'),
+                    'room6FirstName':req.param('firstnameroom6'),
+                    'room6LastName':req.param('lastnameroom6'),
 					'email':req.param('confirmationemail'),
 					'firstName':split[0],
 					'lastName': split[1],
@@ -381,35 +399,50 @@ router.post('/book', function(req,res){
     			url:"https://book.api.ean.com/ean-services/rs/hotel/v3/res?apiKey=7pb5axaj6nm9yrk3f2ujajf5&cid=55505&customerIpAddress="
                     +options.customerIpAddress+"&customerUserAgent="
                     +options.customerUserAgent+"&customerSessionId="
-                    +options.customerSessionId+"&minorRev=28&locale=en_US&currencyCode=INR&hotelId="+
-    				options.hotelId+					"&arrivalDate="+
-    				options.arrivalDate+				"&departureDate="+
-    				options.departureDate+				"&supplierType="+
-    				options.supplierType+				"&rateKey="+
-    				options.rateKey+					"&roomTypeCode="+
-    				options.roomTypeCode+				"&rateCode="+
-    				options.rateCode+					"&chargeableRate="+
-    				options.chargeableRate+				"&room1="+
-    				options.room1+						"&room1FirstName="+
-    				options.room1FirstName+				"&room1LastName="+
-    				options.room1LastName+				"&room1BedTypeId="+
-    				options.room1BedTypeId+				"&room1SmokingPreference="+
-    				options.room1SmokingPreference+		"&email="+
-    				options.email+						"&firstName="+
-    				options.firstName+					"&lastName="+
-    				options.lastName+					"&homePhone="+
-    				options.homePhone+					"&workPhone="+
-    				options.workPhone+					"&creditCardType="+
-    				options.creditCardType+				"&creditCardNumber="+
-    				options.creditCardNumber+			"&creditCardIdentifier="+
-    				options.creditCardIdentifier+		"&creditCardExpirationMonth="+
-    				options.creditCardExpirationMonth+	"&creditCardExpirationYear="+
-    				options.creditCardExpirationYear+	"&address1="+
-    				options.address1+					"&city="+
-    				options.city+						"&stateProvinceCode="+
-    				options.stateProvinceCode+			"&countryCode="+
-    				options.countryCode+				"&postalCode="+
-    				options.postalCode,
+                    +options.customerSessionId+"&minorRev=28&locale=en_US&currencyCode=INR&hotelId="
+    				+options.hotelId+					"&arrivalDate="
+    				+options.arrivalDate+				"&departureDate="
+    				+options.departureDate+				"&supplierType="
+    				+options.supplierType+				"&rateKey="
+    				+options.rateKey+					"&roomTypeCode="
+    				+options.roomTypeCode+				"&rateCode="
+    				+options.rateCode+					"&chargeableRate="
+    				+options.chargeableRate+			"&room1="
+    				+options.room1+						"&room2="
+                    +options.room2+                     "&room3=" 
+                    +options.room3+                     "&room4="
+                    +options.room4+                     "&room5="
+                    +options.room5+                     "&room6="
+                    +options.room6+                     "&room1FirstName="
+    				+options.room1FirstName+			"&room1LastName="
+    				+options.room1LastName+				"&room1BedTypeId="
+    				+options.room1BedTypeId+			"&room1SmokingPreference="
+    				+options.room1SmokingPreference+	"&room2FirstName="
+                    +options.room2FirstName+            "&room2LastName=" 
+                    +options.room2LastName+             "&room3FirstName="
+                    +options.room3FirstName+            "&room3LastName="
+                    +options.room3LastName+             "&room4FirstName="
+                    +options.room4FirstName+            "&room4LastName="
+                    +options.room4LastName+             "&room5FirstName="
+                    +options.room5FirstName+            "&room5LastName="
+                    +options.room5LastName+             "&room6FirstName="
+                    +options.room6FirstName+            "&room6LastName="
+                    +options.room6LastName+             "&email="
+    				+options.email+						"&firstName="
+    				+options.firstName+					"&lastName="
+    				+options.lastName+					"&homePhone="
+    				+options.homePhone+					"&workPhone="
+    				+options.workPhone+					"&creditCardType="
+    				+options.creditCardType+			"&creditCardNumber="
+    				+options.creditCardNumber+			"&creditCardIdentifier="
+    				+options.creditCardIdentifier+		"&creditCardExpirationMonth="
+    				+options.creditCardExpirationMonth+	"&creditCardExpirationYear="
+    				+options.creditCardExpirationYear+	"&address1="
+    				+options.address1+					"&city="
+    				+options.city+						"&stateProvinceCode="
+    				+options.stateProvinceCode+			"&countryCode="
+    				+options.countryCode+				"&postalCode="
+    				+options.postalCode,
     			method: "POST",
     			json: true
     			

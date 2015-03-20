@@ -32,6 +32,7 @@ block content
 										each item in hotelInfo.HotelInformationResponse.PropertyAmenities.PropertyAmenity 
 											li=item.amenity
 						
+						
 							.col-md-7.col-md-offset-1
 								.slidersize#myCarousel.carousel.slide
 									// Carousel indicators
@@ -55,7 +56,10 @@ block content
 									// Carousel nav
 									a.carousel-control.left(href='#myCarousel', data-slide='prev') &lsaquo;
 									a.carousel-control.right(href='#myCarousel', data-slide='next') &rsaquo;
-
+						.row
+							.col-md-10.checkInInstructions
+								B Check-IN Instructions 
+								p !{hotelAvail.HotelRoomAvailabilityResponse.checkInInstructions}
 				div.hotelinformationview
 					table.tableview
 						tr.tableheading

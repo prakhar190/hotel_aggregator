@@ -311,3 +311,7 @@ h2.error-message{
   font-family: "Times New Roman", Georgia, Serif;
   color: red;
 }
+
+.checkInInstructions{
+  margin-left: 20px;
+}

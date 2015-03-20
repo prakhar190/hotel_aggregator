@@ -264,9 +264,12 @@ block content
 					.col-md-4
 						.form-group
 								label Card Type
-								select(name='cardtype' class='dropdown' class='form-control')
-									option(value='Mastercard') Master Card
-										option(value='Visacard') Visa Card
+								select(name='cardtype' class='dropdown' class='form-control' data-validation='required' data-validation-error-msg='Please select card type')
+									option(value='') Select
+										each item in payamentresponse
+											option(value=item.code) #{item.name}
+											
+
 				.row
 					.col-md-4
 						.form-group

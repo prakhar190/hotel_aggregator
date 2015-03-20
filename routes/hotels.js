@@ -286,72 +286,81 @@ router.get('/hotelinfo/:hotelId', function (req, res){
 			{
 				expedia.hotels.info(options, function (err, hotel_information_response){
     				if(err)throw new Error(err);
-    				console.log(hotel_information_response);
-    				var star=hotel_information_response.HotelInformationResponse.HotelSummary.hotelRating;
-    				console.log("Success>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".green.bold.underline);
-    				console.log(req.param('hotelId'));
-    				request({
-                            url:"http://dev.api.ean.com/ean-services/rs/hotel/v3/avail?minorRev=28&cid=55505&apiKey=7pb5axaj6nm9yrk3f2ujajf5&customerUserAgent="
-                                +availableoptions.customerUserAgent+"&customerIpAddress="
-                                +availableoptions.customerIpAddress+"&customerSessionId="
-                                +availableoptions.customerSessionId+"&locale=en_US&currencyCode=INR&hotelId="
-                                +availableoptions.hotelId+"&arrivalDate="
-                                +availableoptions.arrivalDate+"&departureDate="
-                                +availableoptions.departureDate+"&includeDetails="
-                                +availableoptions.includeDetails+"&includeRoomImages="
-                                +availableoptions.includeRoomImages+
-                                "&room1="+availableoptions.room1+
-                                "&room2="+availableoptions.room2+
-                                "&room3="+availableoptions.room3+
-                                "&room4="+availableoptions.room4+
-                                "&room5="+availableoptions.room5+
-                                "&room6="+availableoptions.room6,
-                            method:'GET',
-                            Json: true
-                        }, function (error, response , hotel_available_response){
-    					if(error)throw new Error(error);
-                        var hotelavail=JSON.parse(hotel_available_response)
-    					//checkin=req.session['checkindate'];
-    					//checkout=req.session['checkoutdate'];
-						//var checkout=req.session.checkoutdate;
+    				if(hotel_information_response.HotelInformationResponse.EanWsError)
+                        {
+                            var presentationMessage=hotel_information_response.HotelInformationResponse.EanWsError.presentationMessage
+                            res.render('bookingerror',{title:'Error',message:presentationMessage,user:req.user});  
+                        }
+                    else
+                        {
+                            console.log(hotel_information_response);
+            				var star=hotel_information_response.HotelInformationResponse.HotelSummary.hotelRating;
+            				console.log("Success>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".green.bold.underline);
+            				console.log(req.param('hotelId'));
                         
-    					//console.log(checkin);
-    					console.log(hotelavail);
-                        
-    					expedia.hotels.roomImages(roomimageoptions, function (err, hotel_roomimage_response){
-    						if(err)throw new Error(err);
-    						//console.log(JSON.stringify(hotel_available_response.HotelRoomAvailabilityResponse));
-                           
-                            expedia.hotels.acceptedPayments(payamentoptions, function(err, payamentresponse){
-                               if(err)throw new Error(err);
-                               console.log(JSON.stringify(payamentresponse));
-                               var payament=payamentresponse.HotelPaymentResponse.PaymentType
-                               req.session['payamentresponse']=payament;
+            				request({
+                                    url:"http://dev.api.ean.com/ean-services/rs/hotel/v3/avail?minorRev=28&cid=55505&apiKey=7pb5axaj6nm9yrk3f2ujajf5&customerUserAgent="
+                                        +availableoptions.customerUserAgent+"&customerIpAddress="
+                                        +availableoptions.customerIpAddress+"&customerSessionId="
+                                        +availableoptions.customerSessionId+"&locale=en_US&currencyCode=INR&hotelId="
+                                        +availableoptions.hotelId+"&arrivalDate="
+                                        +availableoptions.arrivalDate+"&departureDate="
+                                        +availableoptions.departureDate+"&includeDetails="
+                                        +availableoptions.includeDetails+"&includeRoomImages="
+                                        +availableoptions.includeRoomImages+
+                                        "&room1="+availableoptions.room1+
+                                        "&room2="+availableoptions.room2+
+                                        "&room3="+availableoptions.room3+
+                                        "&room4="+availableoptions.room4+
+                                        "&room5="+availableoptions.room5+
+                                        "&room6="+availableoptions.room6,
+                                    method:'GET',
+                                    Json: true
+                                }, function (error, response , hotel_available_response){
+            					if(error)throw new Error(error);
+                                var hotelavail=JSON.parse(hotel_available_response)
+            					//checkin=req.session['checkindate'];
+            					//checkout=req.session['checkoutdate'];
+        						//var checkout=req.session.checkoutdate;
+                                
+            					//console.log(checkin);
+            					console.log(hotelavail);
+                                
+            					expedia.hotels.roomImages(roomimageoptions, function (err, hotel_roomimage_response){
+            						if(err)throw new Error(err);
+            						//console.log(JSON.stringify(hotel_available_response.HotelRoomAvailabilityResponse));
+                                   
+                                    expedia.hotels.acceptedPayments(payamentoptions, function(err, payamentresponse){
+                                       if(err)throw new Error(err);
+                                       console.log(JSON.stringify(payamentresponse));
+                                       var payament=payamentresponse.HotelPaymentResponse.PaymentType
+                                       req.session['payamentresponse']=payament;
 
-                               //console.log(req.session['payamentresponse'])
-    					       if(hotel_information_response.HotelInformationResponse.EanWsError)
-                                {
-                                    var presentationMessage=hotel_information_response.HotelInformationResponse.EanWsError.presentationMessage
-                                    res.render('bookingerror',{title:'Error',message:presentationMessage,user:req.user});
-                                }
-                               if(payamentresponse.HotelPaymentResponse.EanWsError)
-                                {
-                                    var presentationMessage=payamentresponse.HotelPaymentResponse.EanWsError.presentationMessage
-                                    res.render('bookingerror',{title:'Error',message:presentationMessage,user:req.user});
-                                }
-                               if(hotelavail.HotelRoomAvailabilityResponse.EanWsError)
-                                {
-                                    var presentationMessage=hotelavail.HotelRoomAvailabilityResponse.EanWsError.presentationMessage
-                                    res.render('bookingerror',{title:'Error',message:presentationMessage,user:req.user});
-                                }
-                               else
-                                {
-        					       res.render('hotelinfo',{title:'Hotel Information',hotelInfo:hotel_information_response,hotelAvail:hotelavail,user:req.user,star:star,disclaimer:disclaimer});
-                                }
-                            });// end of accepted payaments
-    					});// end of expedia.hotels.roomImages
-    				});//end of hotel room availability request
-				});//end of expedia.hotels.info
+                                       //console.log(req.session['payamentresponse'])
+            					       if(hotel_information_response.HotelInformationResponse.EanWsError)
+                                        {
+                                            var presentationMessage=hotel_information_response.HotelInformationResponse.EanWsError.presentationMessage
+                                            res.render('bookingerror',{title:'Error',message:presentationMessage,user:req.user});
+                                        }
+                                       if(payamentresponse.HotelPaymentResponse.EanWsError)
+                                        {
+                                            var presentationMessage=payamentresponse.HotelPaymentResponse.EanWsError.presentationMessage
+                                            res.render('bookingerror',{title:'Error',message:presentationMessage,user:req.user});
+                                        }
+                                       if(hotelavail.HotelRoomAvailabilityResponse.EanWsError)
+                                        {
+                                            var presentationMessage=hotelavail.HotelRoomAvailabilityResponse.EanWsError.presentationMessage
+                                            res.render('bookingerror',{title:'Error',message:presentationMessage,user:req.user});
+                                        }
+                                       else
+                                        {
+                					       res.render('hotelinfo',{title:'Hotel Information',hotelInfo:hotel_information_response,hotelAvail:hotelavail,user:req.user,star:star,disclaimer:disclaimer});
+                                        }
+                                    });// end of accepted payaments
+            					});// end of expedia.hotels.roomImages
+            				});//end of hotel room availability request
+				        }// end of else of hotelinformation error checking
+                });//end of expedia.hotels.info
 
 				
 

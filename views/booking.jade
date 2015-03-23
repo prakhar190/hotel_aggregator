@@ -355,6 +355,7 @@ block content
 				p.terms By selecting to complete this booking I acknowledge that I have read and accept the rules and restrictions, Terms of Use and Privacy Policy.
 				.row
 					.col-md-12
+						input(type='hidden' name='confirmationId' value=req.session['confirmationId'])
 						input(type='hidden' name='hotelId' value=req.param('hotelId'))
 						input(type='hidden' name='supplierType' value=req.param('supplierType'))
 						input(type='hidden' name='rateKey' value=req.param('rateKey'))

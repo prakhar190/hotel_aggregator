@@ -17,9 +17,11 @@ var hotels = require('./routes/hotels');
 var mongoose = require('mongoose');
 var db = require('./config/db');
 mongoose.connect(db.url);
+console.log("Mongo Db Connected")
 
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,6 +34,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 
 
@@ -57,6 +61,7 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
 
 // error handlers
 

@@ -6,6 +6,7 @@ var colors = require('colors');
 var healthstatus = require('../ping/health');
 var config  = require('../config/config');
 var request = require('request');
+var cuid = require('cuid');
 var expedia = require('expedia')({apiKey:"7pb5axaj6nm9yrk3f2ujajf5",cid:"55505",minorRev:"28",currencyCode:"INR"});
 var disclaimer='It is the responsibility of the hotel chain and/or the individual property to ensure the accuracy of the photos displayed. Hotel Aggregator is not responsible for any inaccuracies in the photos.';
 
@@ -16,12 +17,14 @@ var disclaimer='It is the responsibility of the hotel chain and/or the individua
 
 // To get the List of Hotels
 router.post('/search', function (req, res) {
+    //console.log( cuid() );
     var room1
     var room2
     var room3
     var room4
     var room5
     var room6
+    
 // Setting the variables for 0 child
     if(req.param('numberofchild')==0)
         {
@@ -206,6 +209,7 @@ router.post('/search', function (req, res) {
                             req.session['roomfive']=room5;
                             req.session['roomsix']=room6;
                             req.session['sessionId']=sessionid;
+
 						    
 							console.log("Success>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".green.bold.underline);
 							res.render('index',{title:'Hotel Search',hotels:hotellist,star:star,user:req.user,disclaimer:disclaimer});
@@ -379,11 +383,14 @@ router.get('/hotelinfo/:hotelId', function (req, res){
 
 // To show Booking Page
 router.get('/hotelbooking/:hotelId/:supplierType/:rateKey/:roomTypeCode/:rateCode/:chargeableRate/:bedTypeId', function(req, res){
+    req.session['confirmationId']=cuid();
+    console.log(req.session['confirmationId']);
 	res.render('booking',{title:'Hotel Reservation',req:req,user:req.user,rooms:req.session['numberofrooms'],payamentresponse:req.session['payamentresponse']})
 
 });
 // To book a room in hotel
 router.post('/book', function(req,res){
+    
 	var split=req.param('cardholdername').split(' ');
 	var options={ 
                     "customerSessionId" : req.session['sessionId'],
@@ -392,6 +399,8 @@ router.post('/book', function(req,res){
 					'hotelId':req.param('hotelId'),
 					'arrivalDate':req.session['checkindate'],
 					'departureDate':req.session['checkoutdate'],
+                    'affiliateConfirmationId':req.param('confirmationId'),
+                    'affiliateCustomerId':req.param('confirmationemail'),
 					'supplierType':req.param('supplierType'),
 					'rateKey':req.param('rateKey'),
 					'roomTypeCode':req.param('roomTypeCode'),
@@ -441,7 +450,9 @@ router.post('/book', function(req,res){
                     +options.customerSessionId+"&minorRev=28&locale=en_US&currencyCode=INR&hotelId="
     				+options.hotelId+					"&arrivalDate="
     				+options.arrivalDate+				"&departureDate="
-    				+options.departureDate+				"&supplierType="
+    				+options.departureDate+             "&affiliateConfirmationId="
+                    +options.affiliateConfirmationId+   "&affiliateCustomerId="				
+                    +options.affiliateCustomerId+       "&supplierType="
     				+options.supplierType+				"&rateKey="
     				+options.rateKey+					"&roomTypeCode="
     				+options.roomTypeCode+				"&rateCode="
@@ -487,6 +498,7 @@ router.post('/book', function(req,res){
     			
 			}, function (error, response, body){
     				console.log(body);
+                    console.log(req.param('confirmationId'))
     			    if(body.HotelRoomReservationResponse.EanWsError)
     			    {	
     			    	if(body.HotelRoomReservationResponse.EanWsError.ErrorAttributes)
@@ -505,7 +517,8 @@ router.post('/book', function(req,res){
     					}
     				}	
     				if(body.HotelRoomReservationResponse.processedWithConfirmation==true)
-    				{
+    				{   
+
     					res.render('bookingconfirmation',{title:'Booking Confirm',user:req.user,bookingresponse:body});
     					console.log("Booking Done>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".red.bold)
     				}

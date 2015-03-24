@@ -254,6 +254,14 @@ block content
 		.row
 			.col-md-8.col-md-offset-2.bookingform
 				h3 How would you like to pay?
+				each item in payamentresponse
+					if (item.code=='AX')
+						img.cardimagesize(src='/images/americanexpress.jpg')
+					if (item.code=='CA')
+						img.cardimagesize(src='/images/mastercard.jpg')
+					if (item.code=='VI')
+						img.cardimagesize(src='/images/visa.png')
+				
 				.row
 					.col-md-6
 						.form-group
@@ -267,7 +275,7 @@ block content
 								select(name='cardtype' class='dropdown' class='form-control' data-validation='required' data-validation-error-msg='Please select card type')
 									option(value='') Select
 										each item in payamentresponse
-											option(value=item.code) #{item.name}
+											option(value=item.code) #{item.name} 
 											
 
 				.row
@@ -366,3 +374,6 @@ block content
 						P.totalcharge 
 							|You will be charged a total of &#8377; #{req.param('chargeableRate')}
 						input(type='submit' value='Complete Booking' class='btn btn-danger btn-search-hotel')
+						.text-center
+							a.termsandcondition(href ='http://travel.ian.com/index.jsp?pageName=userAgreement&locale=en_US&cid=55505') 
+								|Terms and Conditions

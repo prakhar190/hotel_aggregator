@@ -430,7 +430,7 @@ router.post('/book', function(req,res){
 					'firstName':split[0],
 					'lastName': split[1],
 					'homePhone':req.param('mobilenumber'),
-					'workPhone':'789456',
+					'workPhone':'',
 					'creditCardType':'CA',
 					'creditCardNumber':req.param('cardnumber'),
 					'creditCardIdentifier':'123',
@@ -501,27 +501,33 @@ router.post('/book', function(req,res){
                     console.log(req.param('confirmationId'))
     			    if(body.HotelRoomReservationResponse.EanWsError)
     			    {	
-    			    	if(body.HotelRoomReservationResponse.EanWsError.ErrorAttributes)
+    			    	/*if(body.HotelRoomReservationResponse.EanWsError.ErrorAttributes)
     					{
     					var presentationMessage=body.HotelRoomReservationResponse.EanWsError.ErrorAttributes.presentationMessage
     					res.render('bookingerror',{title:'Booking Error',message:presentationMessage,user:req.user});
     					console.log("Error Generated>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".red.bold);
     					console.log(presentationMessage);
-    					}
-    					if(body.HotelRoomReservationResponse.EanWsError)
-    					{
+    					}*/
+    					//if(body.HotelRoomReservationResponse.EanWsError)
+    					//{
     					var presentationMessage=body.HotelRoomReservationResponse.EanWsError.presentationMessage
     					res.render('bookingerror',{title:'Booking Error',message:presentationMessage,user:req.user});
     					console.log("Error Generated>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".red.bold);
     					console.log(presentationMessage);
-    					}
+    					//}
     				}	
-    				if(body.HotelRoomReservationResponse.processedWithConfirmation==true)
+    				if(body.HotelRoomReservationResponse.reservationStatusCode=='CF')
     				{   
 
     					res.render('bookingconfirmation',{title:'Booking Confirm',user:req.user,bookingresponse:body});
     					console.log("Booking Done>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".red.bold)
     				}
+                    else if (body.HotelRoomReservationResponse.reservationStatusCode=='PS') 
+                        {
+                            res.render('bookingconfirmation',{title:'Booking Confirm',user:req.user,bookingresponse:body});
+                            console.log("Booking Pending>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".red.bold)
+
+                        }
     				else
     				{
     					res.render('bookingerror',{title:'Booking Error',user:req.user});	
@@ -566,6 +572,10 @@ router.post('/cancelbooking', function(req,res){
     });
 
 });// end of Post Cancel booking
+
+router.get('/support', function(req, res){
+    res.render('support',{title:'Customer Support',user:req.user})
+});
 
 
 

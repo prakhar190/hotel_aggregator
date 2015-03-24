@@ -315,3 +315,16 @@ h2.error-message{
 .checkInInstructions{
   margin-left: 20px;
 }
+
+.cardimagesize{
+  height: 30px ;
+  width: 60px ;
+}
+
+.termsandcondition{
+  font-size: 15px !important;
+  font-family: "Times New Roman", Georgia, Serif;
+  color: #5B5C5C !important;
+  text-align: center !important;
+
+}

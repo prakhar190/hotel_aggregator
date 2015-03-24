@@ -30,6 +30,8 @@ html
                         B Hotel Aggregator
                 if (user)
                     .navbar-right.align
+                        .navbar-text
+                            a(href='/hotels/support') Support
                         img.loginimagesize(src=user.image)
                         a(href='/users/signout').btn.btn-info.navbar-btn.align(type='button') SignOut
                         .navbar-text
@@ -38,8 +40,11 @@ html
                     
                 else
                     .navbar-right.align
+                        .navbar-text
+                            a(href='/hotels/support') Support
                         a(href='/users/auth/facebook') 
                             img.size(src='/images/fblogin.png')
                         &nbsp; &nbsp;   
                         a(href='/users/login').btn.btn-info.navbar-btn(type='button') Login
+
     block content

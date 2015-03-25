@@ -56,10 +56,39 @@ block content
 									// Carousel nav
 									a.carousel-control.left(href='#myCarousel', data-slide='prev') &lsaquo;
 									a.carousel-control.right(href='#myCarousel', data-slide='next') &rsaquo;
+								
 						.row
-							.col-md-10.checkInInstructions
+							.col-md-11.checkInInstructions
+								B Location Description 
+								p #{hotelInfo.HotelInformationResponse.HotelDetails.locationDescription}
+						.row
+							.col-md-11.checkInInstructions
+								B Dining Description 
+								p #{hotelInfo.HotelInformationResponse.HotelDetails.diningDescription}
+						.row
+							.col-md-11.checkInInstructions
+								B Amenities Description 
+								p #{hotelInfo.HotelInformationResponse.HotelDetails.amenitiesDescription}
+						.row
+							.col-md-11.checkInInstructions
+								B Room Deails 
+								p #{hotelInfo.HotelInformationResponse.HotelDetails.roomDetailDescription}		
+						.row
+							.col-md-11.checkInInstructions
+								B Hotel Policy
+								p 
+									=hotelInfo.HotelInformationResponse.HotelDetails.hotelPolicy
+				div.hotelinformationview
+						.row
+							.col-md-12.checkInInstructions
 								B Check-IN Instructions 
 								p !{hotelAvail.HotelRoomAvailabilityResponse.checkInInstructions}
+						.row
+							.col-md-11.checkInInstructions
+								B Check In Time-: #{hotelInfo.HotelInformationResponse.HotelDetails.checkInTime}
+								.checkOutTime
+									B CheckOut Time-: #{hotelInfo.HotelInformationResponse.HotelDetails.checkOutTime}
+
 				div.hotelinformationview
 					table.tableview
 						tr.tableheading
@@ -107,10 +136,25 @@ block content
 												br
 												|-----------------
 								td.tablepadding
-									a(href='/hotels/hotelbooking/#{hotelAvail.HotelRoomAvailabilityResponse.hotelId}/#{item.supplierType}/#{item.RateInfos.RateInfo.RoomGroup.Room.rateKey}/#{item.roomTypeCode}/#{item.rateCode}/#{item.RateInfos.RateInfo.ChargeableRateInfo["@total"]}/#{item.BedTypes.BedType["@id"]}').btn.btn-danger(type='button') Book Now
+									table
+										tr
+											td.rate
+												| &#8377; #{item.RateInfos.RateInfo.ChargeableRateInfo["@total"]}
+										tr
+											td.internaltablepadding
+												a(href='/hotels/hotelbooking/#{hotelAvail.HotelRoomAvailabilityResponse.hotelId}/#{item.supplierType}/#{item.RateInfos.RateInfo.RoomGroup.Room.rateKey}/#{item.roomTypeCode}/#{item.rateCode}/#{item.RateInfos.RateInfo.ChargeableRateInfo["@total"]}/#{item.BedTypes.BedType["@id"]}').btn.btn-danger(type='button') Book Now
+										tr
+											td
+												if (item.RateInfos.RateInfo.nonRefundable==true)
+													.nonRefundable
+														|  ! Non Refundable 
+												-var cancellationpolicy=item.RateInfos.RateInfo.cancellationPolicy
+												-req.session['cancellationpolicy']=cancellationpolicy
+												input(type='hidden' name="cancellationpolicy" value=cancellationpolicy)
+												
 						
-						.disclaimer 
-							|The room rates listed are for double occupancy per room unless otherwise  stated and exclude tax recovery charges and service fees.		
+					.disclaimer.text-center 
+						|The room rates listed are for double occupancy per room unless otherwise  stated and exclude tax recovery charges and service fees.		
 				.photodisclaimer.text-center 
 					B Disclaimer:
 					span #{disclaimer}

@@ -359,8 +359,22 @@ block content
 						p Guests who are foreign nationals must present a valid passport and visa. 
 					li
 						p Indian citizens must show a PAN card at check-out for cash transactions exceeding INR 25000.
-
-				p.terms By selecting to complete this booking I acknowledge that I have read and accept the rules and restrictions, Terms of Use and Privacy Policy.
+				
+				
+				.row
+					.col-md-12
+						.terms
+							|By selecting to complete this booking I acknowledge that I have read and accept the rules and restrictions, Terms of Use and Privacy Policy.
+				.row
+					.col-md-12
+						P.totalcharge 
+							|You will be charged a total of &#8377; #{req.param('chargeableRate')}
+				.row
+					.col-md-12		
+						input(type='checkbox' name='vehicle' value='true' class='form-group' data-validation='required' data-validation-error-msg='Please check the checkbox')
+						.cancellationcheck
+							|#{req.session['cancellationpolicy']} 
+				
 				.row
 					.col-md-12
 						input(type='hidden' name='confirmationId' value=req.session['confirmationId'])
@@ -371,8 +385,8 @@ block content
 						input(type='hidden' name='rateCode' value=req.param('rateCode'))
 						input(type='hidden' name='chargeableRate' value=req.param('chargeableRate'))
 						input(type='hidden' name='bedTypeId' value=req.param('bedTypeId'))
-						P.totalcharge 
-							|You will be charged a total of &#8377; #{req.param('chargeableRate')}
+						
+						
 						input(type='submit' value='Complete Booking' class='btn btn-danger btn-search-hotel')
 						.text-center
 							a.termsandcondition(href ='http://travel.ian.com/index.jsp?pageName=userAgreement&locale=en_US&cid=55505') 

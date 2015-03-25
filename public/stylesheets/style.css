@@ -1,3 +1,4 @@
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -238,7 +239,14 @@ h2.error-message{
   margin-top: 15px;
 }
 .terms{
+  display:inline;
   color:blue;
+  font-family: "Times New Roman", Georgia, Serif;
+}
+
+.cancellationcheck{
+  display:inline;
+  color:rgb(119, 83, 83);
   font-family: "Times New Roman", Georgia, Serif;
 }
 
@@ -295,6 +303,8 @@ h2.error-message{
 }
 
 .totalcharge{
+  padding-top: 10px;
+  display:inline;
   font-size: 25px;
   font-family: "Times New Roman", Georgia, Serif;
   color:red;
@@ -313,6 +323,7 @@ h2.error-message{
 }
 
 .checkInInstructions{
+  font-family: "Times New Roman", Georgia, Serif;
   margin-left: 20px;
 }
 
@@ -326,5 +337,16 @@ h2.error-message{
   font-family: "Times New Roman", Georgia, Serif;
   color: #5B5C5C !important;
   text-align: center !important;
+}
+
+.checkOutTime{
+  display:inline;
+  margin-left:300px;
+}
+
+.nonRefundable{
+  font-family: "Times New Roman", Georgia, Serif;
+  font-size: 15px;
+  color: rgba(111, 78, 78, 0.8);
 
 }

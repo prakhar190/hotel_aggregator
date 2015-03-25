@@ -7,7 +7,7 @@ var healthstatus = require('../ping/health');
 var config  = require('../config/config');
 var request = require('request');
 var cuid = require('cuid');
-var expedia = require('expedia')({apiKey:"7pb5axaj6nm9yrk3f2ujajf5",cid:"55505",minorRev:"28",currencyCode:"INR"});
+var expedia = require('expedia')({apiKey:config.apiKey,cid:config.cid,minorRev:"28",currencyCode:"INR"});
 var disclaimer='It is the responsibility of the hotel chain and/or the individual property to ensure the accuracy of the photos displayed. Hotel Aggregator is not responsible for any inaccuracies in the photos.';
 
 
@@ -17,7 +17,8 @@ var disclaimer='It is the responsibility of the hotel chain and/or the individua
 
 // To get the List of Hotels
 router.post('/search', function (req, res) {
-    //console.log( cuid() );
+    console.log(config.apiKey);
+    console.log(config.cid);
     var room1
     var room2
     var room3
@@ -65,7 +66,7 @@ router.post('/search', function (req, res) {
         {
             room3=req.param('numberofadultsroom3')+","+req.param('ageofchild1room3')
         }
-     if(req.param('numberofchildroom4')==1)
+    if(req.param('numberofchildroom4')==1)
         {
             room4=req.param('numberofadultsroom4')+","+req.param('ageofchild1room4')
         }
@@ -151,7 +152,7 @@ router.post('/search', function (req, res) {
 			if(health=='True')
 			{
                request({
-                        url:"http://dev.api.ean.com/ean-services/rs/hotel/v3/list?minorRev=28&cid=55505&apiKey=7pb5axaj6nm9yrk3f2ujajf5&customerUserAgent="
+                        url:"http://dev.api.ean.com/ean-services/rs/hotel/v3/list?minorRev=28&cid="+config.cid+"&apiKey="+config.apiKey+"&customerUserAgent="
                         +options.customerUserAgent+"&customerIpAddress="
                         +options.customerIpAddress+"&customerSessionId="
                         +options.customerSessionId+"&locale=en_US&currencyCode=INR&city="
@@ -297,13 +298,14 @@ router.get('/hotelinfo/:hotelId', function (req, res){
                         }
                     else
                         {
-                            console.log(hotel_information_response);
+                            
+                            //console.log(JSON.stringify(hotel_information_response));
             				var star=hotel_information_response.HotelInformationResponse.HotelSummary.hotelRating;
             				console.log("Success>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>".green.bold.underline);
             				console.log(req.param('hotelId'));
                         
             				request({
-                                    url:"http://dev.api.ean.com/ean-services/rs/hotel/v3/avail?minorRev=28&cid=55505&apiKey=7pb5axaj6nm9yrk3f2ujajf5&customerUserAgent="
+                                    url:"http://dev.api.ean.com/ean-services/rs/hotel/v3/avail?minorRev=28&cid="+config.cid+"&apiKey="+config.apiKey+"&customerUserAgent="
                                         +availableoptions.customerUserAgent+"&customerIpAddress="
                                         +availableoptions.customerIpAddress+"&customerSessionId="
                                         +availableoptions.customerSessionId+"&locale=en_US&currencyCode=INR&hotelId="
@@ -328,7 +330,7 @@ router.get('/hotelinfo/:hotelId', function (req, res){
         						//var checkout=req.session.checkoutdate;
                                 
             					//console.log(checkin);
-            					console.log(hotelavail);
+            					console.log(JSON.stringify(hotelavail));
                                 
             					expedia.hotels.roomImages(roomimageoptions, function (err, hotel_roomimage_response){
             						if(err)throw new Error(err);
@@ -358,7 +360,7 @@ router.get('/hotelinfo/:hotelId', function (req, res){
                                         }
                                        else
                                         {
-                					       res.render('hotelinfo',{title:'Hotel Information',hotelInfo:hotel_information_response,hotelAvail:hotelavail,user:req.user,star:star,disclaimer:disclaimer});
+                					       res.render('hotelinfo',{title:'Hotel Information',hotelInfo:hotel_information_response,hotelAvail:hotelavail,user:req.user,star:star,disclaimer:disclaimer,req:req});
                                         }
                                     });// end of accepted payaments
             					});// end of expedia.hotels.roomImages
@@ -444,7 +446,7 @@ router.post('/book', function(req,res){
 					
 				}
 	request({
-    			url:"https://book.api.ean.com/ean-services/rs/hotel/v3/res?apiKey=7pb5axaj6nm9yrk3f2ujajf5&cid=55505&customerIpAddress="
+    			url:"https://book.api.ean.com/ean-services/rs/hotel/v3/res?apiKey="+config.apiKey+"&cid="+config.cid+"&customerIpAddress="
                     +options.customerIpAddress+"&customerUserAgent="
                     +options.customerUserAgent+"&customerSessionId="
                     +options.customerSessionId+"&minorRev=28&locale=en_US&currencyCode=INR&hotelId="
